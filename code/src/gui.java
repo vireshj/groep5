@@ -28,6 +28,8 @@ public class gui extends JFrame{
 	}
 	public void startScreen(){
 		add(invoer);
+		add(zoek);
 		invoer.setVisible(true);
+		zoek.setVisible(true);
 	}
 }
