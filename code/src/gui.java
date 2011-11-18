@@ -44,10 +44,14 @@ public class gui extends JFrame{
 		ja.addMouseListener(new mouseHandler());
 		nee.addMouseListener(new mouseHandler());
 		verficatieUser.setVisible(true);
+		nee.setVisible(true);
+		ja.setVisible(true);
 	}
 	public void reccomendatieScreen(){
 		add(recommendation);
 		add(home);
+		recommendation.setVisible(true);
+		home.setVisible(true);
 		home.addMouseListener(new mouseHandler());
 	}
 	
@@ -55,11 +59,16 @@ public class gui extends JFrame{
 	class mouseHandler extends MouseAdapter{
 		public void mouseClicked(MouseEvent e){
 			if(e.getSource()==zoek){
+				invoer.setVisible(false);
+				zoek.setVisible(false);
 				remove(invoer);
 				remove(zoek);
 				verificatieScreen();
 			}
 			if(e.getSource()==ja){
+				ja.setVisible(false);
+				nee.setVisible(false);
+				verficatieUser.setVisible(false);
 				remove(ja);
 				remove(nee);
 				remove(verficatieUser);
@@ -67,13 +76,20 @@ public class gui extends JFrame{
 				
 			}
 			if(e.getSource()==nee){
+				ja.setVisible(false);
+				nee.setVisible(false);
+				verficatieUser.setVisible(false);
 				remove(ja);
 				remove(nee);
 				remove(verficatieUser);
 				startScreen();
 			}
 			if(e.getSource()==home){
-				
+				home.setVisible(false);
+				recommendation.setVisible(false);
+				remove(recommendation);
+				remove(home);
+				startScreen();
 			}
 			
 			
