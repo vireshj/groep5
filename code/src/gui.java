@@ -47,7 +47,8 @@ public class gui extends JFrame{
 	}
 	public void reccomendatieScreen(){
 		add(recommendation);
-		
+		add(home);
+		home.addMouseListener(new mouseHandler());
 	}
 	
 	//hier worden de mouse inputs verwerkt
@@ -70,6 +71,9 @@ public class gui extends JFrame{
 				remove(nee);
 				remove(verficatieUser);
 				startScreen();
+			}
+			if(e.getSource()==home){
+				
 			}
 			
 			
