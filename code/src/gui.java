@@ -1,5 +1,7 @@
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -7,10 +9,11 @@ import javax.swing.JFrame;
 
 public class gui extends JFrame{
 	private JButton zoek = new JButton("zoek");
+	private JButton home = new JButton("home");
 	private JButton nee = new JButton("nee");
 	private JButton ja = new JButton("ja");
 	private liedjeInvoerPanel invoer = new liedjeInvoerPanel();
-	private verificatie verficatieUser;
+	private verificatie verficatieUser = new verificatie();
 	private feedbackSysteemPanel recommendation;
 	
 	//hier wordt de gui aangemaakt
@@ -30,11 +33,46 @@ public class gui extends JFrame{
 	public void startScreen(){
 		add(invoer);
 		add(zoek);
+		zoek.addMouseListener(new mouseHandler());
 		invoer.setVisible(true);
 		zoek.setVisible(true);
 	}
 	public void verificatieScreen(){
 		add(verficatieUser);
+		add(ja);
+		add(nee);
+		ja.addMouseListener(new mouseHandler());
+		nee.addMouseListener(new mouseHandler());
 		verficatieUser.setVisible(true);
+	}
+	public void reccomendatieScreen(){
+		add(recommendation);
+		
+	}
+	
+	//hier worden de mouse inputs verwerkt
+	class mouseHandler extends MouseAdapter{
+		public void mouseClicked(MouseEvent e){
+			if(e.getSource()==zoek){
+				remove(invoer);
+				remove(zoek);
+				verificatieScreen();
+			}
+			if(e.getSource()==ja){
+				remove(ja);
+				remove(nee);
+				remove(verficatieUser);
+				reccomendatieScreen();
+				
+			}
+			if(e.getSource()==nee){
+				remove(ja);
+				remove(nee);
+				remove(verficatieUser);
+				startScreen();
+			}
+			
+			
+		}
 	}
 }

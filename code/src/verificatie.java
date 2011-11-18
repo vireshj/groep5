@@ -4,7 +4,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class verificatie extends JPanel {
-	liedPanel verificatie;
+	liedPanel verificatie = new liedPanel();
 	
 	public verificatie(){
 		add(verificatie);
