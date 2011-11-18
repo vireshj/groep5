@@ -33,6 +33,7 @@ public class gui extends JFrame{
 		zoek.setVisible(true);
 	}
 	public void verificatieScreen(){
-		
+		add(verficatieUser);
+		verficatieUser.setVisible(true);
 	}
 }
