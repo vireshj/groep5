@@ -32,4 +32,7 @@ public class gui extends JFrame{
 		invoer.setVisible(true);
 		zoek.setVisible(true);
 	}
+	public void verificatieScreen(){
+		
+	}
 }
