@@ -1,5 +1,5 @@
-
 public class Lied {
+//zoiets?
 	String naam;
 	String artiest;
 	
