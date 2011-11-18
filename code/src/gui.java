@@ -20,7 +20,7 @@ public class gui extends JFrame{
 		setTitle("groepje5");
 		setLayout(new FlowLayout());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(600,600);
+		setSize(700,700);
 		setLocation(0,0);
 		getContentPane().setBackground(Color.white);
 		startScreen();
