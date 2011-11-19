@@ -23,4 +23,7 @@ public class liedPanel extends JPanel {
 		this.genre.setText(invoer.getGenre());
 		this.album.setText(invoer.getAlbum());
 	}
+	public Lied getLiedPanel(){
+		return new Lied(nummer.getText(),artiest.getText(), album.getText(), genre.getText());
+	}
 }

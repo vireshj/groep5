@@ -11,6 +11,12 @@ public class Lied {
 		this.album = "";
 		this.genre = "";
 	}
+	public Lied(String naam, String artiest, String album, String genre){
+		this.naam = naam;
+		this.artiest = artiest;
+		this.album = album;
+		this.genre = genre;
+	}
 	public void setNaam(String naam){
 		this.naam = naam;
 	}
