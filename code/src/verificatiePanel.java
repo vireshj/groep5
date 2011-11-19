@@ -3,10 +3,10 @@ import java.awt.*;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class verificatie extends JPanel {
+public class verificatiePanel extends JPanel {
 	liedPanel verificatie = new liedPanel();
 	
-	public verificatie(){
+	public verificatiePanel(){
 		add(verificatie);
 	}
 	public void setVerificatie(String nummer, String artiest, String genre, String album){

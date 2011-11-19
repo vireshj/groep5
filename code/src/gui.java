@@ -13,7 +13,7 @@ public class gui extends JFrame{
 	private JButton nee = new JButton("nee");
 	private JButton ja = new JButton("ja");
 	private liedjeInvoerPanel invoer = new liedjeInvoerPanel();
-	private verificatie verficatieUser = new verificatie();
+	private verificatiePanel verficatieUser = new verificatiePanel();
 	private feedbackSysteemPanel recommendation;
 	
 	//hier wordt de gui aangemaakt
