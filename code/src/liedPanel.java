@@ -3,6 +3,7 @@ import java.awt.*;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+@SuppressWarnings("serial")
 public class liedPanel extends JPanel {
 	private JLabel nummer = new JLabel("nummer");
 	private JLabel artiest = new JLabel("artiest");
@@ -16,10 +17,10 @@ public class liedPanel extends JPanel {
 		add(genre);
 		add(album);
 	}
-	public void setLiedPanel(String nummer, String artiest, String genre, String album){
-		this.nummer.setText(nummer);
-		this.artiest.setText(artiest);
-		this.genre.setText(genre);
-		this.album.setText(album);
+	public void setLiedPanel(Lied invoer){
+		this.nummer.setText(invoer.getNaam());
+		this.artiest.setText(invoer.getArtiest());
+		this.genre.setText(invoer.getGenre());
+		this.album.setText(invoer.getAlbum());
 	}
 }

@@ -1,16 +1,16 @@
-import java.awt.*;
 
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
+import javax.swing.*;
+
+@SuppressWarnings("serial")
 public class verificatiePanel extends JPanel {
 	liedPanel verificatie = new liedPanel();
 	
 	public verificatiePanel(){
 		add(verificatie);
 	}
-	public void setVerificatie(String nummer, String artiest, String genre, String album){
-		verificatie.setLiedPanel(nummer, artiest, genre, album);
+	public void setVerificatie(Lied invoer){
+		verificatie.setLiedPanel(invoer);
 	}
 }
 

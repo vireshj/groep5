@@ -1,8 +1,8 @@
 import java.awt.*;
 import javax.swing.*;
 
-import java.awt.event.*;
 
+@SuppressWarnings("serial")
 public class liedjeInvoerPanel extends JPanel {
 	private JTextField nummer = new JTextField("voer in");
 	private JTextField artiest = new JTextField("voer in");

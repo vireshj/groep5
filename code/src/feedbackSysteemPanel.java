@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+@SuppressWarnings("serial")
 public class feedbackSysteemPanel extends JPanel {
 	ArrayList<liedPanel> songsPanel = new ArrayList<liedPanel>();
 	

@@ -13,7 +13,7 @@ public class gui extends JFrame{
 	private JButton nee = new JButton("nee");
 	private JButton ja = new JButton("ja");
 	private liedjeInvoerPanel invoer = new liedjeInvoerPanel();
-	private verificatiePanel verficatieUser = new verificatiePanel();
+	private verificatiePanel verificatieUser = new verificatiePanel();
 	private feedbackSysteemPanel recommendation;
 	
 	//hier wordt de gui aangemaakt
@@ -38,12 +38,12 @@ public class gui extends JFrame{
 		zoek.setVisible(true);
 	}
 	public void verificatieScreen(){
-		add(verficatieUser);
+		add(verificatieUser);
 		add(ja);
 		add(nee);
 		ja.addMouseListener(new mouseHandler());
 		nee.addMouseListener(new mouseHandler());
-		verficatieUser.setVisible(true);
+		verificatieUser.setVisible(true);
 		nee.setVisible(true);
 		ja.setVisible(true);
 	}
@@ -54,7 +54,12 @@ public class gui extends JFrame{
 		home.setVisible(true);
 		home.addMouseListener(new mouseHandler());
 	}
-	
+	public Lied getInvoer(){
+		return invoer.getLiedje();
+	}
+	public void setVerificatie(Lied invoer){
+		verificatieUser.setVerificatie(invoer);
+	}
 	//hier worden de mouse inputs verwerkt
 	class mouseHandler extends MouseAdapter{
 		public void mouseClicked(MouseEvent e){
@@ -68,20 +73,20 @@ public class gui extends JFrame{
 			if(e.getSource()==ja){
 				ja.setVisible(false);
 				nee.setVisible(false);
-				verficatieUser.setVisible(false);
+				verificatieUser.setVisible(false);
 				remove(ja);
 				remove(nee);
-				remove(verficatieUser);
+				remove(verificatieUser);
 				reccomendatieScreen();
 				
 			}
 			if(e.getSource()==nee){
 				ja.setVisible(false);
 				nee.setVisible(false);
-				verficatieUser.setVisible(false);
+				verificatieUser.setVisible(false);
 				remove(ja);
 				remove(nee);
-				remove(verficatieUser);
+				remove(verificatieUser);
 				startScreen();
 			}
 			if(e.getSource()==home){
