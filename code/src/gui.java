@@ -17,10 +17,7 @@ public class gui extends JFrame{
 	private verificatiePanel verificatieUser = new verificatiePanel();
 	private feedbackSysteemPanel recommendation;
 	
-	//hier wordt de gui aangemaakt
-	public static void main(String [] args){
-		new gui();
-	}
+	
 	public gui (){
 		setTitle("groepje5");
 		setLayout(new FlowLayout());
@@ -69,6 +66,7 @@ public class gui extends JFrame{
 				zoek.setVisible(false);
 				remove(invoer);
 				remove(zoek);
+				controller.findSong(getInvoer());
 				verificatieScreen();
 			}
 			if(e.getSource()==ja){
