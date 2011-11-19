@@ -9,13 +9,15 @@ public class feedbackSysteemPanel extends JPanel {
 	
 	public feedbackSysteemPanel(){
 		setLayout(new GridLayout(1,20));
-		for(liedPanel h : songsPanel){
-			add(h);
-		}
 	}
 	public void addSong(Lied invoer){
 		liedPanel x = new liedPanel();
 		x.setLiedPanel(invoer);
 		songsPanel.add(x);
+	}
+	public void addPanel(){
+		for(liedPanel h : songsPanel){
+			add(h);
+		}
 	}
 }

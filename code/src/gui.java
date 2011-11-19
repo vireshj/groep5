@@ -15,7 +15,7 @@ public class gui extends JFrame{
 	private JButton ja = new JButton("ja");
 	private liedjeInvoerPanel invoer = new liedjeInvoerPanel();
 	private verificatiePanel verificatieUser = new verificatiePanel();
-	private feedbackSysteemPanel recommendation;
+	private feedbackSysteemPanel recommendation = new feedbackSysteemPanel() ;
 	
 	
 	public gui (){
