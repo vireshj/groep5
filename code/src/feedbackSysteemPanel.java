@@ -13,4 +13,9 @@ public class feedbackSysteemPanel extends JPanel {
 			add(h);
 		}
 	}
+	public void addSong(Lied invoer){
+		liedPanel x = new liedPanel();
+		x.setLiedPanel(invoer);
+		songsPanel.add(x);
+	}
 }

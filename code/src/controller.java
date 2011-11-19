@@ -11,6 +11,6 @@ public class controller {
 	//hier worden liedjes gevonden die de gebruiker mogelijk ook leuk zal vinden 
 	public static void findSimilarSongs(Lied invoer){
 		//methodes anroepen die gelijksoortige liedjes kan vinden op basis van de invoer
-		//arraylist vullen van de gui
+		//arraylist vullen van de gui setFeedbackPanel(Lied invoer)
 	}
 }

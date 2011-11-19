@@ -58,6 +58,9 @@ public class gui extends JFrame{
 	public void setVerificatie(Lied invoer){
 		verificatieUser.setVerificatie(invoer);
 	}
+	public void setFeedbackPanel(Lied invoer){
+		recommendation.addSong(invoer);
+	}
 	//hier worden de mouse inputs verwerkt
 	class mouseHandler extends MouseAdapter{
 		public void mouseClicked(MouseEvent e){
