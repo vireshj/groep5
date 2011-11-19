@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 
+@SuppressWarnings("serial")
 public class gui extends JFrame{
 	private JButton zoek = new JButton("zoek");
 	private JButton home = new JButton("home");
