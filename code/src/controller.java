@@ -9,7 +9,7 @@ public class controller {
 	// vind in de database een matching liedje.
 	public static void findSong(Lied invoer){
 		//hier worden methodes aangeroepen om de ingevoerde liedje te vinden in de db
-		Lied gevonden = lastFM.searchSong(invoer.naam, invoer.artiest);
+		Lied gevonden = lastFM.searchSong(invoer.getNaam(), invoer.getArtiest());
 		gui.setVerificatie(gevonden);
 	}
 	//hier worden liedjes gevonden die de gebruiker mogelijk ook leuk zal vinden 

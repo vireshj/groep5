@@ -83,6 +83,7 @@ public class gui extends JFrame{
 				//hier wordt er van de verificatie weer een Lied object gemaakt
 				//Als we weten wat voor object er wordt gemaakt in de controller zouden we deze ook in de gui opslaan
 				//zo hoeven we niet twee keer te zoeken
+				recommendation.clearList();
 				controller.findSimilarSongs(verificatieUser.verificatie.getLiedPanel());
 				reccomendatieScreen();
 			}
