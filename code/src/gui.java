@@ -14,8 +14,8 @@ public class gui extends JFrame{
 	private JButton nee = new JButton("nee");
 	private JButton ja = new JButton("ja");
 	private liedjeInvoerPanel invoer = new liedjeInvoerPanel();
-	private verificatiePanel verificatieUser = new verificatiePanel();
-	private feedbackSysteemPanel recommendation = new feedbackSysteemPanel() ;
+	private static verificatiePanel verificatieUser = new verificatiePanel();
+	private static feedbackSysteemPanel recommendation = new feedbackSysteemPanel() ;
 	
 	
 	public gui (){
@@ -46,6 +46,7 @@ public class gui extends JFrame{
 		ja.setVisible(true);
 	}
 	public void reccomendatieScreen(){
+		recommendation.addPanelSong();
 		add(recommendation);
 		add(home);
 		recommendation.setVisible(true);
@@ -55,10 +56,10 @@ public class gui extends JFrame{
 	public Lied getInvoer(){
 		return invoer.getLiedje();
 	}
-	public void setVerificatie(Lied invoer){
+	public static void setVerificatie(Lied invoer){
 		verificatieUser.setVerificatie(invoer);
 	}
-	public void setFeedbackPanel(Lied invoer){
+	public static void setFeedbackPanel(Lied invoer){
 		recommendation.addSong(invoer);
 	}
 	//hier worden de mouse inputs verwerkt

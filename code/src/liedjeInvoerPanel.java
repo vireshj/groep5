@@ -11,11 +11,10 @@ public class liedjeInvoerPanel extends JPanel {
 	
 	public liedjeInvoerPanel(){
 		setLayout(new GridLayout(4,2));
-		add(nummer);
 		add(nummerInvoer);
-		add(artiest);
+		add(nummer);
 		add(artiestInvoer);
-		
+		add(artiest);
 	}
 	public Lied getLiedje(){
 		return new Lied(nummer.getText(),artiest.getText());

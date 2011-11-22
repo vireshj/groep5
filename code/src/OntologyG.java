@@ -33,7 +33,9 @@ public class OntologyG extends JFrame implements ActionListener{
 	private JScrollPane scrollselect;
 	private JScrollPane scrollantwoord;
 	private RepositoryConnection dbCon; 
-	private String endpointURL = "http://dbtune.org/musicbrainz/sparql";
+	//private String endpointURL = "http://dbtune.org/magnatune/sparql";
+	//private String endpointURL = "http://dbpedia.org/sparql";
+	private String endpointURL = "http://api.kasabi.com/dataset/musicbrainz/apis/sparql?apikey=413cf0addc8edc2c5d3e92ba7134461a91de252e";
 	
 	public OntologyG()
 	{
