@@ -8,7 +8,7 @@ public class feedbackSysteemPanel extends JPanel {
 	ArrayList<liedPanel> songsPanel = new ArrayList<liedPanel>();
 	
 	public feedbackSysteemPanel(){
-		//setLayout(new GridLayout(10,1,0,0));
+		setLayout(new GridLayout(10,1));
 		//setLayout(new FlowLayout());
 	}
 	public void addSong(Lied invoer){
@@ -21,5 +21,8 @@ public class feedbackSysteemPanel extends JPanel {
 		for(liedPanel h : songsPanel){
 			add(h);
 		}
+	}
+	public void clearList(){
+		songsPanel.clear();
 	}
 }
