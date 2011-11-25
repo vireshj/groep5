@@ -7,11 +7,12 @@ import de.umass.lastfm.Track;
 
 public class lastFM {
 	private static final String apiKey = "9b24762f4ec58fed178083b4d9f255c2";
-	
+	//Zoekt een lied in de lastFM database op lied-nummer en artiest
 	public static Lied searchSong(String song, String artists){
 		Track gevonden = Track.getInfo(artists, song, apiKey);
 		return new Lied(gevonden.getName(), gevonden.getArtist(), gevonden.getAlbum(), "");
 	}
+	//retourneerd op basis van een Lied instantie similar liedjes.
 	public static ArrayList<Lied> similarSongs(Lied invoer){
 		System.out.println(invoer.getNaam());
 		ArrayList<Lied> similar = new ArrayList<Lied>();
@@ -22,7 +23,6 @@ public class lastFM {
 			Track lastInput = x.next();
 			i++;
 			Lied input = new Lied(lastInput.getName(), lastInput.getArtist(), lastInput.getAlbum(), "");
-			System.out.println(input.getNaam());
 			similar.add(input);
 		}
 	return similar;	
