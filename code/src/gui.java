@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,13 +17,13 @@ public class gui extends JFrame{
 	private liedjeInvoerPanel invoer = new liedjeInvoerPanel();
 	private static verificatiePanel verificatieUser = new verificatiePanel();
 	private static feedbackSysteemPanel recommendation = new feedbackSysteemPanel() ;
-	
+	private Lied gezocht;
 	
 	public gui (){
 		setTitle("groepje5");
 		setLayout(new FlowLayout());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(700,700);
+		setSize(1200,700);
 		setLocation(0,0);
 		getContentPane().setBackground(Color.white);
 		startScreen();
@@ -59,8 +60,14 @@ public class gui extends JFrame{
 	public static void setVerificatie(Lied invoer){
 		verificatieUser.setVerificatie(invoer);
 	}
-	public static void setFeedbackPanel(Lied invoer){
-		recommendation.addSong(invoer);
+	public static void setFeedbackPanel(ArrayList<Lied> invoer){
+		
+		recommendation.makeTable(invoer.size());
+		for(int i = 0; i < invoer.size(); i++)
+		{
+			recommendation.addSong(invoer.get(i), i);
+		}
+		recommendation.adjustColumns();
 	}
 	//hier worden de mouse inputs verwerkt
 	class mouseHandler extends MouseAdapter{
@@ -70,7 +77,8 @@ public class gui extends JFrame{
 				zoek.setVisible(false);
 				remove(invoer);
 				remove(zoek);
-				controller.findSong(getInvoer());
+				gezocht = getInvoer();
+				controller.findSong(gezocht);
 				verificatieScreen();
 			}
 			if(e.getSource()==ja){
@@ -84,7 +92,7 @@ public class gui extends JFrame{
 				//Als we weten wat voor object er wordt gemaakt in de controller zouden we deze ook in de gui opslaan
 				//zo hoeven we niet twee keer te zoeken
 				recommendation.clearList();
-				controller.findSimilarSongs(verificatieUser.verificatie.getLiedPanel());
+				controller.findSimilarSongs(gezocht);
 				reccomendatieScreen();
 			}
 			if(e.getSource()==nee){

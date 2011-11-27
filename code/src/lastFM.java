@@ -14,7 +14,6 @@ public class lastFM {
 	}
 	//retourneerd op basis van een Lied instantie similar liedjes.
 	public static ArrayList<Lied> similarSongs(Lied invoer){
-		System.out.println(invoer.getNaam());
 		ArrayList<Lied> similar = new ArrayList<Lied>();
 		Collection<Track> liedjes = Track.getSimilar(invoer.getArtiest(), invoer.getNaam(), apiKey);
 		Iterator<Track> x = liedjes.iterator();

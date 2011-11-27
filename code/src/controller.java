@@ -17,8 +17,7 @@ public class controller {
 		//methodes anroepen die gelijksoortige liedjes kan vinden op basis van de invoer
 		//arraylist vullen van de gui setFeedbackPanel(Lied invoer)
 		ArrayList<Lied> songs = lastFM.similarSongs(invoer);
-		for(Lied h : songs){
-			gui.setFeedbackPanel(h);
-		}
+		gui.setFeedbackPanel(songs);
+		
 	}
 }
