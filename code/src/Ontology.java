@@ -23,19 +23,11 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 
-public class OntologyG extends JFrame implements ActionListener{
-	private JLabel vraagselect = new JLabel("SELECT:");
-	private JTextArea select = new JTextArea();
-	private JButton gaan = new JButton("Gaan!");
-	private JTextArea antwoord = new JTextArea();
-	private Panel paneel = new Panel(new GridLayout(2,2,0,5));
-	private Panel paneelantwoord = new Panel(new GridLayout(1,1));
-	private JScrollPane scrollselect;
-	private JScrollPane scrollantwoord;
+public class Ontology extends JFrame implements ActionListener{
 	private RepositoryConnection dbCon; 
 	private String endpointURL = "http://api.kasabi.com/dataset/musicbrainz/apis/sparql?apikey=413cf0addc8edc2c5d3e92ba7134461a91de252e";
 	
-	public OntologyG()
+	public Ontology()
 	{
 		setBounds(0,0,1020,750);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -49,34 +41,14 @@ public class OntologyG extends JFrame implements ActionListener{
 
 		} catch(Exception e1)
 		{
-			antwoord.setText(e1.toString());
 			System.out.print(e1.toString());
 		}
+	}
+	public Lied findSong(){
 		
+	}
+	public String querie(){
 		
-        
-        select.setLineWrap(true);
-        scrollselect = new JScrollPane(select);
-        scrollselect.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        antwoord.setLineWrap(true);
-        scrollantwoord = new JScrollPane(antwoord);
-        scrollantwoord.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-
-        Container container = getContentPane();
-        container.setLayout(null);
-        paneel.setBounds(0,0,1000,200);
-        paneelantwoord.setBounds(0,200,1000,500);
-        paneel.add(vraagselect);
-        paneel.add(scrollselect);
-        paneel.add(gaan);
-        paneelantwoord.add(scrollantwoord);
-        
-        container.add(paneel);
-        container.add(paneelantwoord);
-        
-        setVisible(true);
-        
-        gaan.addActionListener(this);
 	}
 	
 	public void actionPerformed(ActionEvent e){
@@ -111,11 +83,4 @@ public class OntologyG extends JFrame implements ActionListener{
     		}
         }
 	}
-	
-
-	
-	//public static void main(String[] args)
-	//{
-	//	OntologyG o = new OntologyG();			
-	//}
 }
