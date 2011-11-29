@@ -23,64 +23,57 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 
-public class Ontology extends JFrame implements ActionListener{
+public class Ontology{
 	private RepositoryConnection dbCon; 
 	private String endpointURL = "http://api.kasabi.com/dataset/musicbrainz/apis/sparql?apikey=413cf0addc8edc2c5d3e92ba7134461a91de252e";
 	
-	public Ontology()
-	{
-		setBounds(0,0,1020,750);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        try{
-			
+	public Ontology(){
+		try{
 			Repository dbtune = new HTTPRepository(endpointURL);
 			dbtune.initialize();
-
 			dbCon = dbtune.getConnection();
-
-		} catch(Exception e1)
-		{
+		}catch(Exception e1){
 			System.out.print(e1.toString());
 		}
 	}
-	public Lied findSong(){
-		
-	}
-	public String querie(){
-		
+	
+	public Lied findSong(Lied invoer){
+		return querieOntology(querie(invoer));
 	}
 	
-	public void actionPerformed(ActionEvent e){
+	public String querie(Lied invoer){
+		String nummer = invoer.getNaam();
+		String artiest = invoer.getArtiest();
+		String querie = "";
+		return null;
+	}
+	
+	public Lied querieOntology(String invoer){
+		String resultaat = db(invoer);
+		//process the string to extract useful information.
+		return null;
+	}
+	
+	public String db(String query){
+       	try{
+       		ArrayList<String> antwoorden = new ArrayList<String>();
+   			int k = 1;
+			TupleQuery tupleQuery = dbCon.prepareTupleQuery(QueryLanguage.SPARQL, query);
+   			TupleQueryResult result = tupleQuery.evaluate();
+   			List<String> bindingNames = result.getBindingNames();
 
-        Object source = e.getSource();
-        
-        if (source == gaan){
-        	try{
-       			ArrayList<String> antwoorden = new ArrayList<String>();
-   				String query = select.getText();
-   				int k = 1;
-
-
-   				TupleQuery tupleQuery = dbCon.prepareTupleQuery(QueryLanguage.SPARQL, query);
-       			TupleQueryResult result = tupleQuery.evaluate();
-       			List<String> bindingNames = result.getBindingNames();
-
-       			while (result.hasNext()) {
-					BindingSet bindingSet = result.next();
-    				for(int l = 0; l < bindingNames.size(); l++)
-	       			{
-		   				String val = bindingSet.getValue(bindingNames.get(l)).stringValue();
-		   				antwoorden.add(bindingNames.get(l)+ k + "-->"+val+"\n");
-		   			}
-		   			k++;
-				}
-			    antwoord.setText(antwoorden.toString());
-    		} catch(Exception e1)
-    		{
-    			antwoord.setText(e1.toString());
+   			while (result.hasNext()){
+				BindingSet bindingSet = result.next();
+    			for(int l = 0; l < bindingNames.size(); l++){
+		   			String val = bindingSet.getValue(bindingNames.get(l)).stringValue();
+		   			antwoorden.add(bindingNames.get(l)+ k + "-->"+val+"\n");
+		   		}
+		   		k++;
+			}
+			return antwoorden.toString();
+    		}catch(Exception e1){
     			System.out.print(e1.toString());
+    			return "error";
     		}
         }
-	}
 }
