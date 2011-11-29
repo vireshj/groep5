@@ -24,10 +24,14 @@ import javax.swing.JTextField;
 
 
 public class Ontology{
-	private RepositoryConnection dbCon; 
-	private String endpointURL = "http://api.kasabi.com/dataset/musicbrainz/apis/sparql?apikey=413cf0addc8edc2c5d3e92ba7134461a91de252e";
+	private static RepositoryConnection dbCon; 
+	private static String endpointURL = "http://api.kasabi.com/dataset/musicbrainz/apis/sparql?apikey=413cf0addc8edc2c5d3e92ba7134461a91de252e";
 	
 	public Ontology(){
+		
+	}
+	
+	public static void connection(){
 		try{
 			Repository dbtune = new HTTPRepository(endpointURL);
 			dbtune.initialize();
@@ -37,24 +41,24 @@ public class Ontology{
 		}
 	}
 	
-	public Lied findSong(Lied invoer){
+	public static Lied findSong(Lied invoer){
 		return querieOntology(querie(invoer));
 	}
 	
-	public String querie(Lied invoer){
+	public static String querie(Lied invoer){
 		String nummer = invoer.getNaam();
 		String artiest = invoer.getArtiest();
-		String querie = "";
-		return null;
+		String querie = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX foaf: <http://xmlns.com/foaf/0.1/> PREFIX mo: <http://purl.org/ontology/mo/>	SELECT DISTINCT ?name WHERE {?artist a mo:MusicArtist.	?artist foaf:name ?name.} limit 10";
+		return querie;
 	}
 	
-	public Lied querieOntology(String invoer){
+	public static Lied querieOntology(String invoer){
 		String resultaat = db(invoer);
 		//process the string to extract useful information.
 		return null;
 	}
 	
-	public String db(String query){
+	public static String db(String query){
        	try{
        		ArrayList<String> antwoorden = new ArrayList<String>();
    			int k = 1;
@@ -70,6 +74,7 @@ public class Ontology{
 		   		}
 		   		k++;
 			}
+   			System.out.println(antwoorden);
 			return antwoorden.toString();
     		}catch(Exception e1){
     			System.out.print(e1.toString());

@@ -20,4 +20,12 @@ public class controller {
 		gui.setFeedbackPanel(songs);
 		
 	}
+	public static void findSongOntology(Lied invoer){
+		Ontology.connection();
+		Ontology.findSong(invoer);
+		//gui.setVerificatie(Ontology.findSong(invoer));
+	}
+	public static void findSimilarSongsClustering(Lied invoer){
+		
+	}
 }
