@@ -1,0 +1,69 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf360
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;\red67\green67\blue67;\red212\green214\blue233;\red255\green255\blue255;
+\red86\green25\blue115;\red113\green205\blue37;\red64\green130\blue34;\red0\green31\blue188;\red46\green115\blue116;
+\red138\green35\blue30;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww25100\viewh15040\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\ql\qnatural\pardirnatural
+
+\f0\fs24 \cf0 Select ?artist\
+where\
+\{ \
+	?artisturi <
+\f1 http://xmlns.com/foaf/0.1/name>
+\f0  ?artist\
+	?artisturi 
+\f1 \cf2 \cb3 <http://www.w3.org/1999/02/22-rdf-syntax-ns#/type>
+\f0 \cf0 \cb1  
+\f1 <http://mm.musicbrainz.org/artist> .\
+
+\f0 \}\
+\
+\pard\pardeftab720\sl260\ql\qnatural
+
+\f1 \cf0 \cb4 \
+\pard\pardeftab720\ql\qnatural
+
+\fs26 \cf5 \cb1 PREFIX \cf6 rdf: \cf7 <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\cf0 \
+\cf5 PREFIX \cf6 dc: \cf7 <http://purl.org/dc/elements/1.1/>\cf0 \
+\cf5 PREFIX \cf6 foaf: \cf7 <http://xmlns.com/foaf/0.1/>\cf0 \
+\cf5 PREFIX \cf6 mo: \cf7 <http://purl.org/ontology/mo/>\cf0 \
+\cf5 SELECT DISTINCT \cf8 ?name \cf5 WHERE \cf0 \{\
+\
+\'a0\'a0\cf8 ?artist \cf9 a \cf6 mo:Track\cf0 .\
+\'a0\'a0\cf8 ?artist \cf6 foaf:name \cf8 ?name \cf0 \
+\}\
+\cf5 limit \cf0 10
+\fs24 \cb4   \
+\pard\pardeftab720\sl260\ql\qnatural
+\cf0 \
+\
+\pard\pardeftab720\ql\qnatural
+
+\fs26 \cf5 \cb1 PREFIX \cf6 rdf: \cf7 <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\cf0 \
+\cf5 PREFIX \cf6 dc: \cf7 <http://purl.org/dc/elements/1.1/>\cf0 \
+\cf5 PREFIX \cf6 foaf: \cf7 <http://xmlns.com/foaf/0.1/>\cf0 \
+\cf5 PREFIX \cf6 mo: \cf7 <http://purl.org/ontology/mo/>\cf0 \
+\cf5 SELECT DISTINCT \cf8 ?y \cf5 WHERE \cf0 \{\
+\
+\'a0\'a0\cf8 ?artisturi\'a0\cf9 a \cf6 mo:MusicArtist\cf0 .\
+\'a0\'a0\cf8 ?artisturi\'a0\cf6 foaf:name \cf8 ?artist\cf0 .\
+\'a0\'a0\cf8 ?artisturi\'a0\cf7 <http://purl.org/ontology/mo/musicbrainz> \cf8 ?y\cf0 \
+\'a0 \'a0 \'a0 \'a0 \'a0\'a0\
+\}\
+\cf5 limit \cf0 10\
+\
+\
+\
+\cf5 PREFIX \cf6 rdf: \cf7 <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\cf0 \
+\cf5 PREFIX \cf6 dc: \cf7 <http://purl.org/dc/elements/1.1/>\cf0 \
+\cf5 PREFIX \cf6 foaf: \cf7 <http://xmlns.com/foaf/0.1/>\cf0 \
+\cf5 PREFIX \cf6 mo: \cf7 <http://purl.org/ontology/mo/>\cf0 \
+\cf5 SELECT DISTINCT \cf8 ?x \cf5 WHERE \cf0 \{\
+\
+\'a0\'a0\cf8 ?artisturi \cf9 a \cf6 mo:MusicArtist\cf0 .\
+\'a0\'a0\cf8 ?artisturi \cf6 foaf:name \cf10 "Eminem"\cf0 .\
+\'a0\'a0\cf8 ?artisturi\'a0?x ?y\cf0 .\
+\'a0 \'a0 \'a0 \'a0 \'a0\'a0\
+\}\
+}
