@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
+import de.umass.lastfm.Tag;
 import de.umass.lastfm.Track;
 
 
@@ -10,21 +11,35 @@ public class lastFM {
 	//Zoekt een lied in de lastFM database op lied-nummer en artiest
 	public static Lied searchSong(String song, String artists){
 		Track gevonden = Track.getInfo(artists, song, apiKey);
-		return new Lied(gevonden.getName(), gevonden.getArtist(), gevonden.getAlbum(), "");
+		return new Lied(gevonden.getName(), gevonden.getArtist(), gevonden.getAlbum(), Track.getTopTags(null, gevonden.getMbid(), apiKey));
 	}
 	//retourneerd op basis van een Lied instantie similar liedjes.
 	public static ArrayList<Lied> similarSongs(Lied invoer){
-		ArrayList<Lied> similar = new ArrayList<Lied>();
 		Collection<Track> liedjes = Track.getSimilar(invoer.getArtiest(), invoer.getNaam(), apiKey);
-		Iterator<Track> x = liedjes.iterator();
+		ArrayList<Lied> similar = trackToLied(liedjes);
+		return similar;	
+	}
+
+	public static ArrayList<Lied> getTopTracks(Tag tag)
+	{
+		Collection<Track> liedjes = Tag.getTopTracks(tag.getName(), apiKey);
+		ArrayList<Lied> topTracks = trackToLied(liedjes);
+		return topTracks;
+	}
+
+	public static ArrayList<Lied> trackToLied(Collection<Track> tracks)
+	{
+		ArrayList<Lied> liedjes = new ArrayList<Lied>();
+		Iterator<Track> x = tracks.iterator();
 		int i = 0;
 		while(x.hasNext() && i < 10){
 			Track lastInput = x.next();
 			i++;
-			Lied input = new Lied(lastInput.getName(), lastInput.getArtist(), lastInput.getAlbum(), "");
-			similar.add(input);
+			Lied input = new Lied(lastInput.getName(), lastInput.getArtist(), lastInput.getAlbum(), Track.getTopTags(null, lastInput.getMbid(), apiKey));
+			liedjes.add(input);
 		}
-	return similar;	
+
+		return liedjes;
 	}
 	
 }
