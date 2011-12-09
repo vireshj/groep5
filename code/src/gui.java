@@ -11,14 +11,17 @@ import javax.swing.JFrame;
 
 @SuppressWarnings("serial")
 public class gui extends JFrame{
+	private JButton login = new JButton("login");
 	private JButton zoek = new JButton("zoek");
 	private JButton home = new JButton("home");
 	private JButton nee = new JButton("nee");
 	private JButton ja = new JButton("ja");
+	private inlogPanel inlog = new inlogPanel();
 	private liedjeInvoerPanel invoer = new liedjeInvoerPanel();
 	private static verificatiePanel verificatieUser = new verificatiePanel();
 	private static feedbackSysteemPanel recommendation = new feedbackSysteemPanel() ;
 	private Lied gezocht;
+	private User naam;
 	private Container container;
 	
 	public gui (){
@@ -33,6 +36,13 @@ public class gui extends JFrame{
 		setVisible(true);
 	}
 	public void startScreen(){
+		container.add(inlog);
+		container.add(login);
+		login.addMouseListener(new mouseHandler());
+		inlog.setVisible(true);
+		login.setVisible(true);
+	}
+	public void liedjeInvoerScreen(){
 		container.add(invoer);
 		container.add(zoek);
 		zoek.addMouseListener(new mouseHandler());
@@ -63,6 +73,11 @@ public class gui extends JFrame{
 	public Lied getInvoer(){
 		return invoer.getLiedje();
 	}
+	
+	public User getNaamInvoer(){
+		return inlog.getUser();
+	}
+	
 	public static void setVerificatie(Lied invoer){
 		verificatieUser.setVerificatie(invoer);
 	}
@@ -78,6 +93,15 @@ public class gui extends JFrame{
 	//hier worden de mouse inputs verwerkt
 	class mouseHandler extends MouseAdapter{
 		public void mouseClicked(MouseEvent e){
+			if(e.getSource()==login){
+				inlog.setVisible(false);
+				login.setVisible(false);
+				container.remove(inlog);
+				container.remove(login);
+				naam = getNaamInvoer();
+				//controller.findSong(gezocht);
+				liedjeInvoerScreen();
+			}
 			if(e.getSource()==zoek){
 				invoer.setVisible(false);
 				zoek.setVisible(false);
@@ -85,7 +109,6 @@ public class gui extends JFrame{
 				container.remove(zoek);
 				gezocht = getInvoer();
 				controller.findSong(gezocht);
-				controller.findSongOntology(gezocht);
 				verificatieScreen();
 			}
 			if(e.getSource()==ja){
