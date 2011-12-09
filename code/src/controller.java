@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 
+import de.umass.lastfm.Tag;
+
 
 public class controller {
 	//hier wordt de gui aangemaakt
@@ -25,7 +27,31 @@ public class controller {
 		Ontology.findSong(invoer);
 		//gui.setVerificatie(Ontology.findSong(invoer));
 	}
-	public static void findSimilarSongsClustering(Lied invoer){
+	public static void findSimilarSongsDecisionTree(ArrayList<Tag> tags){
+		ArrayList<Lied> liedjes = new ArrayList<Lied>();
+		ArrayList<Lied> tagLiedjes;	
 		
+		for(Tag tag : tags)
+		{
+			tagLiedjes = lastFM.getTopTracks(tag);
+			for(Lied liedje : tagLiedjes)
+			{
+				liedjes.add(liedje);
+			}
+		}
+				
+		//opbouw v/d decision tree
+		DTreeNode prev = new DTreeNode(tags.get(0));
+		DTreeNode next;
+		for(int i = 1; i < tags.size() - 1; i++)
+		{
+			next = new DTreeNode(tags.get(i), prev);
+			prev = next;
+		}
+		DTreeNode root = new DTreeNode(tags.get(tags.size() - 1), prev);
+		
+		//vind 10 meest vergelijkbare liedjes
+		ArrayList<Lied> result = root.classify(liedjes, 10);
+		gui.setFeedbackPanel(result);		
 	}
 }
