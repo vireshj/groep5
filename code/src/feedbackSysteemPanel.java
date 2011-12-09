@@ -8,7 +8,6 @@ public class feedbackSysteemPanel extends JPanel {
 	
 	public feedbackSysteemPanel(){
 		super();
-		this.setSize(1100, 600);
 		this.setLayout(new BorderLayout());
 	}
 	

@@ -78,5 +78,7 @@
 	<classpathentry kind="lib" path="/Users/viresh_2090/Downloads/openrdf-sesame-2.6.0/lib/spring-web-2.5.6.jar"/>
 	<classpathentry kind="lib" path="/Users/viresh_2090/Downloads/openrdf-sesame-2.6.0/lib/spring-webmvc-2.5.6.jar"/>
 	<classpathentry kind="lib" path="/Users/viresh_2090/Downloads/openrdf-sesame-2.6.0/lib/standard-1.1.2.jar"/>
+	<classpathentry kind="lib" path="/Users/viresh_2090/Downloads/jEN-4.x.p/jEN-4.x.p/lib/jEN.jar"/>
+	<classpathentry kind="lib" path="/Users/viresh_2090/Downloads/jEN-4.x.p/jEN-4.x.p/lib/json_simple-1.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -18,28 +19,30 @@ public class gui extends JFrame{
 	private static verificatiePanel verificatieUser = new verificatiePanel();
 	private static feedbackSysteemPanel recommendation = new feedbackSysteemPanel() ;
 	private Lied gezocht;
+	private Container container;
 	
 	public gui (){
 		setTitle("groepje5");
-		setLayout(new FlowLayout());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(1200,700);
 		setLocation(0,0);
-		getContentPane().setBackground(Color.white);
+		container  = getContentPane();
+		container.setLayout(new FlowLayout());
+		container.setBackground(Color.white);
 		startScreen();
 		setVisible(true);
 	}
 	public void startScreen(){
-		add(invoer);
-		add(zoek);
+		container.add(invoer);
+		container.add(zoek);
 		zoek.addMouseListener(new mouseHandler());
 		invoer.setVisible(true);
 		zoek.setVisible(true);
 	}
 	public void verificatieScreen(){
-		add(verificatieUser);
-		add(ja);
-		add(nee);
+		container.add(verificatieUser);
+		container.add(ja);
+		container.add(nee);
 		ja.addMouseListener(new mouseHandler());
 		nee.addMouseListener(new mouseHandler());
 		verificatieUser.setVisible(true);
@@ -47,9 +50,12 @@ public class gui extends JFrame{
 		ja.setVisible(true);
 	}
 	public void reccomendatieScreen(){
+		container.setLayout(null);
 		recommendation.addPanelSong();
-		add(recommendation);
-		add(home);
+		container.add(recommendation);
+		container.add(home);
+		recommendation.setBounds(30, 30, 1130,300);
+		home.setBounds(550, 350, 60, 30); 
 		recommendation.setVisible(true);
 		home.setVisible(true);
 		home.addMouseListener(new mouseHandler());
@@ -75,8 +81,8 @@ public class gui extends JFrame{
 			if(e.getSource()==zoek){
 				invoer.setVisible(false);
 				zoek.setVisible(false);
-				remove(invoer);
-				remove(zoek);
+				container.remove(invoer);
+				container.remove(zoek);
 				gezocht = getInvoer();
 				controller.findSong(gezocht);
 				controller.findSongOntology(gezocht);
@@ -86,9 +92,9 @@ public class gui extends JFrame{
 				ja.setVisible(false);
 				nee.setVisible(false);
 				verificatieUser.setVisible(false);
-				remove(ja);
-				remove(nee);
-				remove(verificatieUser);
+				container.remove(ja);
+				container.remove(nee);
+				container.remove(verificatieUser);
 				//hier wordt er van de verificatie weer een Lied object gemaakt
 				//Als we weten wat voor object er wordt gemaakt in de controller zouden we deze ook in de gui opslaan
 				//zo hoeven we niet twee keer te zoeken
@@ -100,16 +106,17 @@ public class gui extends JFrame{
 				ja.setVisible(false);
 				nee.setVisible(false);
 				verificatieUser.setVisible(false);
-				remove(ja);
-				remove(nee);
-				remove(verificatieUser);
+				container.remove(ja);
+				container.remove(nee);
+				container.remove(verificatieUser);
 				startScreen();
 			}
 			if(e.getSource()==home){
 				home.setVisible(false);
 				recommendation.setVisible(false);
-				remove(recommendation);
-				remove(home);
+				container.remove(recommendation);
+				container.remove(home);
+				container.setLayout(new FlowLayout());
 				startScreen();
 			}
 			

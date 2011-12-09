@@ -55,6 +55,7 @@ public class Ontology{
 	public static Lied querieOntology(String invoer){
 		String resultaat = db(invoer);
 		//process the string to extract useful information.
+		
 		return null;
 	}
 	
