@@ -26,4 +26,5 @@ public class lastFM {
 		}
 	return similar;	
 	}
+	
 }

@@ -85,7 +85,6 @@ public class gui extends JFrame{
 				container.remove(zoek);
 				gezocht = getInvoer();
 				controller.findSong(gezocht);
-				controller.findSongOntology(gezocht);
 				verificatieScreen();
 			}
 			if(e.getSource()==ja){
