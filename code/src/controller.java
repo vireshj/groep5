@@ -14,6 +14,7 @@ public class controller {
 		Lied gevonden = lastFM.searchSong(invoer.getNaam(), invoer.getArtiest());
 		gui.setVerificatie(gevonden);
 	}
+	
 	//hier worden liedjes gevonden die de gebruiker mogelijk ook leuk zal vinden 
 	public static void findSimilarSongs(Lied invoer){
 		//methodes anroepen die gelijksoortige liedjes kan vinden op basis van de invoer
@@ -22,11 +23,13 @@ public class controller {
 		gui.setFeedbackPanel(songs);
 		
 	}
-	public static void findSongOntology(Lied invoer){
+	
+    /*public static void findSongOntology(Lied invoer){
 		Ontology.connection();
 		Ontology.findSong(invoer);
 		//gui.setVerificatie(Ontology.findSong(invoer));
-	}
+	} */
+
 	public static void findSimilarSongsDecisionTree(ArrayList<Tag> tags){
 		ArrayList<Lied> liedjes = new ArrayList<Lied>();
 		ArrayList<Lied> tagLiedjes;	
@@ -49,6 +52,9 @@ public class controller {
 			prev = next;
 		}
 		DTreeNode root = new DTreeNode(tags.get(tags.size() - 1), prev);
+	}
+
+	public static void findSimilarSongsClustering(Lied invoer){
 		
 		//vind 10 meest vergelijkbare liedjes
 		ArrayList<Lied> result = root.classify(liedjes, 10);
