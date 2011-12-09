@@ -1,18 +1,24 @@
 import java.util.*;
 
+import de.umass.lastfm.Tag;
+
 //klasse DTreeNode, maakt onderdeel uit van een decision Tree. 
 //Controleert of liedjes vergelijkbaar zijn met het gegeven liedje
 public class DTreeNode {
-	private int parameterIndex;
-	private Feature[] features;
+	private Tag tag;
 	private DTreeNode yesNode;
 	private boolean isLeaf;
 	
-	public DTreeNode(int parameter, Feature[] features, boolean isLeaf, DTreeNode node)
+	public DTreeNode(Tag tag)
 	{
-		this.parameterIndex = parameter;
-		this.features = features;
-		this.isLeaf = isLeaf;
+		this.tag = tag;
+		this.isLeaf = true;
+	}
+	
+	public DTreeNode(Tag tag, DTreeNode node)
+	{
+		this.tag = tag;
+		this.isLeaf = false;
 		this.yesNode = node;
 	}
 	
@@ -25,16 +31,23 @@ public class DTreeNode {
 	//Vergelijkt de lijst van liedjes met het gegeven liedje op de parameter van deze node
 	//stuurt deze lijst door naar de volgende node om te controleren
 	//returnt n vergelijkbare liedjes
-	public ArrayList<Feature[]> classify(ArrayList<Feature[]> liedjes, int n)
+	public ArrayList<Lied> classify(ArrayList<Lied> liedjes, int n)
 	{
-		ArrayList<Feature[]> yes = new ArrayList<Feature[]>(); //lied
-		ArrayList<Feature[]> no = new ArrayList<Feature[]>(); //lied
-		ArrayList<Feature[]> result = new ArrayList<Feature[]>();
+		ArrayList<Lied> yes = new ArrayList<Lied>(); //lied
+		ArrayList<Lied> no = new ArrayList<Lied>(); //lied
+		ArrayList<Lied> result = new ArrayList<Lied>();
 		
 		//controle
-		for(Feature[] h : liedjes)
+		for(Lied h : liedjes)
 		{
-			if(features[parameterIndex].validate(h[parameterIndex]))
+			Collection<Tag> tags = h.getTag();
+			boolean isEqual = false;
+			for(Tag s : tags)
+			{
+				if(tag.equals(s))
+					isEqual = true;
+			}
+			if(isEqual)
 			{
 				yes.add(h);
 			}else {no.add(h);}
