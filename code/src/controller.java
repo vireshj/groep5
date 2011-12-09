@@ -52,9 +52,6 @@ public class controller {
 			prev = next;
 		}
 		DTreeNode root = new DTreeNode(tags.get(tags.size() - 1), prev);
-	}
-
-	public static void findSimilarSongsClustering(Lied invoer){
 		
 		//vind 10 meest vergelijkbare liedjes
 		ArrayList<Lied> result = root.classify(liedjes, 10);

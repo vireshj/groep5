@@ -12,7 +12,7 @@ public class feedbackSysteemPanel extends JPanel {
 	}
 	
 	public void makeTable(int i){
-		table = new JTable(i, 8);
+		table = new JTable(i, 6);
 		table.setFillsViewportHeight(true);
 	}
 	
@@ -26,10 +26,8 @@ public class feedbackSysteemPanel extends JPanel {
 		table.setValueAt(invoer.getNaam(), i, 1);
 		table.setValueAt("artiest:", i, 2);
 		table.setValueAt(invoer.getArtiest(), i, 3);
-		table.setValueAt("genre:", i, 4);
-		table.setValueAt(invoer.getGenre(), i, 5);
-		table.setValueAt("album:", i, 6);
-		table.setValueAt(invoer.getAlbum(), i, 7);
+		table.setValueAt("album:", i, 4);
+		table.setValueAt(invoer.getAlbum(), i, 5);
 	}
 	
 	public void addPanelSong(){
