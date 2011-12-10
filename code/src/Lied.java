@@ -13,7 +13,7 @@ public class Lied {
 		this.naam = naam;
 		this.artiest = artiest;
 		this.album = "";
-		this.tag = null;
+		//this.tag = null;
 	}
 	public Lied(String naam, String artiest, String album, Collection<Tag> tag){
 		this.naam = naam;

@@ -19,17 +19,11 @@ public class controller {
 	public static void findSimilarSongs(Lied invoer){
 		//methodes anroepen die gelijksoortige liedjes kan vinden op basis van de invoer
 		//arraylist vullen van de gui setFeedbackPanel(Lied invoer)
+		System.out.println("test");
 		ArrayList<Lied> songs = lastFM.similarSongs(invoer);
 		gui.setFeedbackPanel(songs);
 		
 	}
-	
-    /*public static void findSongOntology(Lied invoer){
-		Ontology.connection();
-		Ontology.findSong(invoer);
-		//gui.setVerificatie(Ontology.findSong(invoer));
-	} */
-
 	public static void findSimilarSongsDecisionTree(ArrayList<Tag> tags){
 		ArrayList<Lied> liedjes = new ArrayList<Lied>();
 		ArrayList<Lied> tagLiedjes;	

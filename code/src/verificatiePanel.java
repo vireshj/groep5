@@ -14,8 +14,6 @@ public class verificatiePanel extends JPanel {
 		verificatie.setValueAt(invoer.getArtiest(), 0, 3);
 		verificatie.setValueAt("album:", 0, 4);
 		verificatie.setValueAt(invoer.getAlbum(), 0, 5);
-		
-		
 	}
 	
 	

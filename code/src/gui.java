@@ -25,7 +25,7 @@ public class gui extends JFrame{
 	private Container container;
 	
 	public gui (){
-		setTitle("groepje5");
+		setTitle("groep5");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(1200,700);
 		setLocation(0,0);
@@ -35,15 +35,14 @@ public class gui extends JFrame{
 		startScreen();
 		setVisible(true);
 	}
-	/*public void startScreen(){
+	public void startScreen(){
 		container.add(inlog);
 		container.add(login);
 		login.addMouseListener(new mouseHandler());
 		inlog.setVisible(true);
 		login.setVisible(true);
-		liedjeInvoerScreen
-	}*/
-	public void startScreen(){
+	}
+	public void liedjeInvoerScreen(){
 		container.add(invoer);
 		container.add(zoek);
 		zoek.addMouseListener(new mouseHandler());
@@ -61,7 +60,7 @@ public class gui extends JFrame{
 		ja.setVisible(true);
 	}
 	public void reccomendatieScreen(){
-		container.setLayout(null);
+		//container.setLayout(null);
 		recommendation.addPanelSong();
 		container.add(recommendation);
 		container.add(home);
@@ -94,15 +93,14 @@ public class gui extends JFrame{
 	//hier worden de mouse inputs verwerkt
 	class mouseHandler extends MouseAdapter{
 		public void mouseClicked(MouseEvent e){
-			/*if(e.getSource()==login){
+			if(e.getSource()==login){
 				inlog.setVisible(false);
 				login.setVisible(false);
 				container.remove(inlog);
 				container.remove(login);
 				naam = getNaamInvoer();
-				//controller.findSong(gezocht);
 				liedjeInvoerScreen();
-			}*/
+			}
 			if(e.getSource()==zoek){
 				invoer.setVisible(false);
 				zoek.setVisible(false);

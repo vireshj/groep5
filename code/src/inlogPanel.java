@@ -4,6 +4,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+@SuppressWarnings("serial")
 public class inlogPanel extends JPanel {
 
 	private JTextField inlogNaam = new JTextField("voer in",30);
