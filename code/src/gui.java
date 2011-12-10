@@ -60,7 +60,7 @@ public class gui extends JFrame{
 		ja.setVisible(true);
 	}
 	public void reccomendatieScreen(){
-		//container.setLayout(null);
+		container.setLayout(null);
 		recommendation.addPanelSong();
 		container.add(recommendation);
 		container.add(home);
