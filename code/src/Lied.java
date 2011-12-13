@@ -4,27 +4,28 @@ import de.umass.lastfm.Tag;
 
 public class Lied {
 //zoiets?
-	String track;
+	String naam;
 	String artiest;
 	String album;
 	Collection<String> tag;
 	
 	public Lied(String naam, String artiest){
-		this.track = naam;
+		this.naam = naam;
 		this.artiest = artiest;
 		this.album = "";
+		//this.tag = null;
 	}
 	public Lied(String naam, String artiest, String album, Collection<String> tag){
-		this.track = naam;
+		this.naam = naam;
 		this.artiest = artiest;
 		this.album = album;
 		this.tag = tag;
 	}
 	public void setNaam(String naam){
-		this.track = naam;
+		this.naam = naam;
 	}
 	public String getNaam(){
-		return track;
+		return naam;
 		
 	}
 	public void setArtiest(String artiest){
@@ -42,7 +43,7 @@ public class Lied {
 	public void setTag(Collection<String> tag){
 		this.tag = tag;
 	}
-	public Collection<Tag> getTag(){
+	public Collection<String> getTag(){
 		return this.tag;
 	}
 	
