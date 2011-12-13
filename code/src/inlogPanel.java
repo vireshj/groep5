@@ -8,7 +8,7 @@ import javax.swing.JTextField;
 public class inlogPanel extends JPanel {
 
 	private JTextField inlogNaam = new JTextField("voer in",30);
-	private JLabel inlogInvoer = new JLabel("nummer");
+	private JLabel inlogInvoer = new JLabel("Naam");
 
 	public inlogPanel(){
 		setLayout(new GridLayout(4,2));
