@@ -7,15 +7,14 @@ public class Lied {
 	String track;
 	String artiest;
 	String album;
-	Collection<Tag> tag;
+	Collection<String> tag;
 	
 	public Lied(String naam, String artiest){
 		this.track = naam;
 		this.artiest = artiest;
 		this.album = "";
-		//this.tag = null;
 	}
-	public Lied(String naam, String artiest, String album, Collection<Tag> tag){
+	public Lied(String naam, String artiest, String album, Collection<String> tag){
 		this.track = naam;
 		this.artiest = artiest;
 		this.album = album;
@@ -40,7 +39,7 @@ public class Lied {
 	public String getAlbum(){
 		return this.album;
 	}
-	public void setTag(Collection<Tag> tag){
+	public void setTag(Collection<String> tag){
 		this.tag = tag;
 	}
 	public Collection<Tag> getTag(){
