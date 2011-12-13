@@ -131,7 +131,7 @@ public class gui extends JFrame{
 				container.remove(ja);
 				container.remove(nee);
 				container.remove(verificatieUser);
-				startScreen();
+				liedjeInvoerScreen();
 			}
 			if(e.getSource()==home){
 				home.setVisible(false);
@@ -139,7 +139,7 @@ public class gui extends JFrame{
 				container.remove(recommendation);
 				container.remove(home);
 				container.setLayout(new FlowLayout());
-				startScreen();
+				liedjeInvoerScreen();
 			}
 			
 			
