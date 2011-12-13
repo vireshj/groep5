@@ -23,6 +23,7 @@ public class gui extends JFrame{
 	private Lied gezocht;
 	private User naam;
 	private Container container;
+	private Lied gezochtLied = null;
 	
 	public gui (){
 		setTitle("groep5");
@@ -107,7 +108,7 @@ public class gui extends JFrame{
 				container.remove(invoer);
 				container.remove(zoek);
 				gezocht = getInvoer();
-				controller.findSong(gezocht);
+				gezochtLied = controller.findSong(gezocht);
 				verificatieScreen();
 			}
 			if(e.getSource()==ja){
@@ -121,7 +122,7 @@ public class gui extends JFrame{
 				//Als we weten wat voor object er wordt gemaakt in de controller zouden we deze ook in de gui opslaan
 				//zo hoeven we niet twee keer te zoeken
 				recommendation.clearList();
-				controller.findSimilarSongs(gezocht);
+				controller.findSimilarSongsDecisionTree(gezochtLied.getTag());
 				reccomendatieScreen();
 			}
 			if(e.getSource()==nee){

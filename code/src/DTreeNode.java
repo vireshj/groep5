@@ -5,17 +5,17 @@ import de.umass.lastfm.Tag;
 //klasse DTreeNode, maakt onderdeel uit van een decision Tree. 
 //Controleert of liedjes vergelijkbaar zijn met het gegeven liedje
 public class DTreeNode {
-	private Tag tag;
+	private String tag;
 	private DTreeNode yesNode;
 	private boolean isLeaf;
 	
-	public DTreeNode(Tag tag)
+	public DTreeNode(String tag)
 	{
 		this.tag = tag;
 		this.isLeaf = true;
 	}
 	
-	public DTreeNode(Tag tag, DTreeNode node)
+	public DTreeNode(String tag, DTreeNode node)
 	{
 		this.tag = tag;
 		this.isLeaf = false;
@@ -40,9 +40,9 @@ public class DTreeNode {
 		//controle
 		for(Lied h : liedjes)
 		{
-			Collection<Tag> tags = h.getTag();
+			Collection<String> tags = h.getTag();
 			boolean isEqual = false;
-			for(Tag s : tags)
+			for(String s : tags)
 			{
 				if(tag.equals(s))
 					isEqual = true;
