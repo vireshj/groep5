@@ -18,8 +18,9 @@ public class inlogPanel extends JPanel {
 
 	}
 
-	public User getUser(){
-		return new User(inlogNaam.getText());
+	public String getUserName(){
+		User user = new User(inlogNaam.getText());
+		return user.getNaam();
 	}
 
 }
