@@ -21,7 +21,8 @@ public class gui extends JFrame{
 	private static verificatiePanel verificatieUser = new verificatiePanel();
 	private static feedbackSysteemPanel recommendation = new feedbackSysteemPanel() ;
 	private Lied gezocht;
-	private User naam;
+	private User user;
+	private String username;
 	private Container container;
 	
 	public gui (){
@@ -74,8 +75,8 @@ public class gui extends JFrame{
 		return invoer.getLiedje();
 	}
 	
-	public User getNaamInvoer(){
-		return inlog.getUser();
+	public String getNaamInvoer(){
+		return inlog.getUserName();
 	}
 	
 	public static void setVerificatie(Lied invoer){
@@ -98,7 +99,9 @@ public class gui extends JFrame{
 				login.setVisible(false);
 				container.remove(inlog);
 				container.remove(login);
-				naam = getNaamInvoer();
+				username = getNaamInvoer();
+				if(!User.userExists(username))
+					User.makeUserFile(username);					
 				liedjeInvoerScreen();
 			}
 			if(e.getSource()==zoek){
