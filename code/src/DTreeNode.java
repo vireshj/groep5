@@ -63,7 +63,7 @@ public class DTreeNode {
 		}
 		//Als er na het classificeren nog steeds te weinig liedjes zijn
 		//voegt random liedjes toe die minder vergelijkbaar zijn.
-		if(result.size() < n)
+		while(result.size() < n)
 		{
 			Random r = new Random();
 			result.add(no.get(r.nextInt(no.size())));

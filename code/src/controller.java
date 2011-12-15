@@ -35,20 +35,17 @@ public class controller {
 		for(String tagName : tags)
 		{
 			String[] split = tagName.split(" ");
-			System.out.println(split[split.length - 1]);
 			Iterator<Tag> i = Tag.search(split[split.length - 1], apiKey).iterator();
 			Tag tag = i.next();
-			while(tag.getName().equals(tagName) && i.hasNext())
+			while(!tag.getName().equals(tagName) && i.hasNext())
 			{
 				Tag dummy = i.next();
-				System.out.println(" dummy " + dummy.getName());
 				if(dummy.getName().equals(tagName))
 					tag = dummy;
 			}
-			System.out.println(tagName + " geeft " + tag.getName());
 			tagLiedjes = lastFM.getTopTracks(tag);
 			for(Lied liedje : tagLiedjes)
-			{
+			{				
 				liedjes.add(liedje);
 			}
 		}
@@ -67,7 +64,6 @@ public class controller {
 		
 		//vind 10 meest vergelijkbare liedjes
 		ArrayList<Lied> result = root.classify(liedjes, 10);
-		System.out.println(result.size());
 		gui.setFeedbackPanel(result);		
 	}
 }

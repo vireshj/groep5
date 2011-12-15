@@ -36,7 +36,8 @@ public class lastFM {
 		while(x.hasNext() && i < 10){
 			Track lastInput = x.next();
 			i++;
-			Lied input = new Lied(lastInput.getName(), lastInput.getArtist(), lastInput.getAlbum(), lastInput.getTags());
+			Track gevonden = Track.getInfo(lastInput.getArtist(), lastInput.getName(), apiKey);
+			Lied input = new Lied(gevonden.getName(), gevonden.getArtist(), gevonden.getAlbum(), gevonden.getTags());
 			liedjes.add(input);
 		}
 
