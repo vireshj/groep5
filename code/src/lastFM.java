@@ -9,10 +9,17 @@ import de.umass.lastfm.Track;
 public class lastFM {
 	private static final String apiKey = "9b24762f4ec58fed178083b4d9f255c2";
 	//Zoekt een lied in de lastFM database op lied-nummer en artiest
-	public static Lied searchSong(String song, String artists){
+	public static Lied searchSong(String song, String artists) throws Exception{
+		Collection<Track> found = Track.search(artists, song, 1, apiKey);
+		
+		if(found.iterator().hasNext()){
+			Track gevonden = found.iterator().next();
+		}
+		else{
+			 throw new Exception();
+		}
 		Track gevonden = Track.getInfo(artists, song, apiKey);
 		return new Lied(gevonden.getName(), gevonden.getArtist(), gevonden.getAlbum(), gevonden.getTags());
-		//return new Lied(gevonden.getName(), gevonden.getArtist(), gevonden.getAlbum(), null);
 	}
 	//retourneerd op basis van een Lied instantie similar liedjes.
 	public static ArrayList<Lied> similarSongs(Lied invoer){
