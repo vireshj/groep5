@@ -25,6 +25,12 @@ public class controller {
 		}
 	}
 	
+	public static ArrayList<Tag> findTag(tagCheckBox tag, Lied lied){
+		ArrayList<Tag> gevondenTags = lied.getTag();
+		gui.addTags(gevondenTags);
+		return gevondenTags;
+	}
+	
 	//hier worden liedjes gevonden die de gebruiker mogelijk ook leuk zal vinden 
 	public static void findSimilarSongs(Lied invoer){
 		//methodes anroepen die gelijksoortige liedjes kan vinden op basis van de invoer

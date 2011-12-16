@@ -3,11 +3,11 @@ import javax.swing.JCheckBox;
 import de.umass.lastfm.Tag;
 
 
-public class tagCheckBoxPanel {
+public class tagCheckBox{
 	private JCheckBox tagBox;
 	private Tag tag;
 	
-	public tagCheckBoxPanel(JCheckBox tagBox, Tag tag){
+	public tagCheckBox(JCheckBox tagBox, Tag tag){
 		this.tag = tag;
 		this.tagBox = tagBox;
 	}
