@@ -47,5 +47,10 @@ public class Lied {
 		return this.tag;
 	}
 	
+	public boolean equals(Lied that)
+	{
+		return that.getArtiest().equals(this.artiest) && that.getNaam().equals(this.naam);
+	}
+	
 	
 }
