@@ -6,7 +6,7 @@ import de.umass.lastfm.Tag;
 
 @SuppressWarnings("serial")
 public class tagsAanvinkPanel extends JPanel{
-	ArrayList<tagCheckBoxPanel> tags = new ArrayList<tagCheckBoxPanel>();
+	ArrayList<tagCheckBox> tags = new ArrayList<tagCheckBox>();
 	//klasse aangemaakt
 	public tagsAanvinkPanel(){
 		super();
@@ -14,14 +14,14 @@ public class tagsAanvinkPanel extends JPanel{
 	//hier wordt een tag toegevoegd aan de arraylist
 	public void add(ArrayList<Tag> x){
 		for(Tag tag: x){
-			tagCheckBoxPanel tagcheck = new tagCheckBoxPanel(new JCheckBox(tag.getName()),tag);
+			tagCheckBox tagcheck = new tagCheckBox(new JCheckBox(tag.getName()),tag);
 			tags.add(tagcheck);
 			this.add(tagcheck.getJCheckBox());
 		}
 	}
 	public ArrayList<Tag> getCheckedPanels(){
 		ArrayList<Tag> tagreturn = new ArrayList<Tag>();
-		for(tagCheckBoxPanel tagcheck : tags){
+		for(tagCheckBox tagcheck : tags){
 			if(tagcheck.getJCheckBox().isSelected()){
 				tagreturn.add(tagcheck.getTag());
 			}
