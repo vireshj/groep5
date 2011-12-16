@@ -6,8 +6,6 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.*;
 
-import de.umass.lastfm.Tag;
-
 
 @SuppressWarnings("serial")
 public class gui extends JFrame{
@@ -19,7 +17,6 @@ public class gui extends JFrame{
 	private inlogPanel inlog = new inlogPanel();
 	private liedjeInvoerPanel invoer = new liedjeInvoerPanel();
 	private static verificatiePanel verificatieUser = new verificatiePanel();
-	private static tagsAanvinkPanel tags = new tagsAanvinkPanel();
 	private static feedbackSysteemPanel recommendation = new feedbackSysteemPanel() ;
 	private Lied gezocht;
 	private User user;
@@ -30,7 +27,7 @@ public class gui extends JFrame{
 	public gui (){
 		setTitle("groep5");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(1200,700);
+		setSize(1200,350);
 		setLocation(0,0);
 		container  = getContentPane();
 		container.setLayout(new FlowLayout());
@@ -56,13 +53,11 @@ public class gui extends JFrame{
 	public void verificatieScreen(){
 		container.removeAll();
 		container.add(verificatieUser);
-		container.add(tags);
 		container.add(ja);
 		container.add(nee);
 		ja.addMouseListener(new mouseHandler());
 		nee.addMouseListener(new mouseHandler());
 		verificatieUser.setVisible(true);
-		tags.setVisible(true);
 		nee.setVisible(true);
 		ja.setVisible(true);
 	}
@@ -72,8 +67,8 @@ public class gui extends JFrame{
 		recommendation.addPanelSong();
 		container.add(recommendation);
 		container.add(home);
-		recommendation.setBounds(30, 30, 1130,300);
-		home.setBounds(550, 350, 80, 30); 
+		recommendation.setBounds(30, 30, 1130,180);
+		home.setBounds(550, 220, 80, 30); 
 		recommendation.setVisible(true);
 		home.setVisible(true);
 		home.addMouseListener(new mouseHandler());
@@ -85,9 +80,7 @@ public class gui extends JFrame{
 	public String getNaamInvoer(){
 		return inlog.getUserName();
 	}
-	public static void addTags(ArrayList<Tag> x){
-		tags.add(x);
-	}	
+	
 	public static void setVerificatie(Lied invoer){
 		verificatieUser.setVerificatie(invoer);
 	}
