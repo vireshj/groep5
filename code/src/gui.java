@@ -4,9 +4,7 @@ import java.awt.FlowLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.*;
 
 
 @SuppressWarnings("serial")
@@ -113,7 +111,8 @@ public class gui extends JFrame{
 				gezocht = getInvoer();
 				gezochtLied = controller.findSong(gezocht);
 				if(gezochtLied == null){
-					
+					liedjeInvoerScreen();
+					container.add(new JLabel("kan liedje niet vinden"));
 				}
 				else{
 					verificatieScreen();
