@@ -7,19 +7,22 @@ import de.umass.lastfm.Tag;
 public class DTreeNode {
 	private String tag;
 	private DTreeNode yesNode;
+	private Lied song;
 	private boolean isLeaf;
 	
-	public DTreeNode(String tag)
+	public DTreeNode(String tag, Lied song)
 	{
 		this.tag = tag;
 		this.isLeaf = true;
+		this.song = song;
 	}
 	
-	public DTreeNode(String tag, DTreeNode node)
+	public DTreeNode(String tag, DTreeNode node, Lied song)
 	{
 		this.tag = tag;
 		this.isLeaf = false;
 		this.yesNode = node;
+		this.song = song;
 	}
 	
 	public void setYes(DTreeNode node)
@@ -40,17 +43,20 @@ public class DTreeNode {
 		//controle
 		for(Lied h : liedjes)
 		{
-			Collection<String> tags = h.getTag();
-			boolean isEqual = false;
-			for(String s : tags)
+			if(!yes.contains(h) && !song.equals(h))
 			{
-				if(tag.equals(s))
-					isEqual = true;
+				Collection<String> tags = h.getTag();
+				boolean isEqual = false;
+				for(String s : tags)
+				{
+					if(tag.equals(s))
+						isEqual = true;
+				}
+				if(isEqual)
+				{
+					yes.add(h);
+				}else {no.add(h);}
 			}
-			if(isEqual)
-			{
-				yes.add(h);
-			}else {no.add(h);}
 		}
 		//doorsturen 
 		if(!isLeaf && yes.size() >= n)
@@ -63,10 +69,14 @@ public class DTreeNode {
 		}
 		//Als er na het classificeren nog steeds te weinig liedjes zijn
 		//voegt random liedjes toe die minder vergelijkbaar zijn.
-		while(result.size() < n)
+		Random r = new Random();
+		int i = 0;
+		while(result.size() < n && i < no.size())
 		{
-			Random r = new Random();
-			result.add(no.get(r.nextInt(no.size())));
+			Lied lied = no.get(r.nextInt(no.size()));
+			if(!result.contains(lied))
+				result.add(lied);
+			i++;
 		}
 		return result;
 	}	

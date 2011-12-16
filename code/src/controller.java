@@ -34,14 +34,13 @@ public class controller {
 		gui.setFeedbackPanel(songs);
 		
 	}
-	public static void findSimilarSongsDecisionTree(Collection<String> tags){
+	public static void findSimilarSongsDecisionTree(Collection<String> tags, Lied song){
 		ArrayList<Lied> liedjes = new ArrayList<Lied>();
 		ArrayList<Lied> tagLiedjes;	
 		
 		for(String tagName : tags)
 		{
-			String[] split = tagName.split(" ");
-			Iterator<Tag> i = Tag.search(split[split.length - 1], apiKey).iterator();
+			Iterator<Tag> i = Tag.search(tagName, apiKey).iterator();
 			Tag tag = i.next();
 			while(!tag.getName().equals(tagName) && i.hasNext())
 			{
@@ -58,13 +57,13 @@ public class controller {
 				
 		//opbouw v/d decision tree
 		Iterator<String> i = tags.iterator();
-		DTreeNode prev = new DTreeNode(i.next());
+		DTreeNode prev = new DTreeNode(i.next(), song);
 		DTreeNode next;
-		DTreeNode root = new DTreeNode(i.next(), prev);;
+		DTreeNode root = new DTreeNode(i.next(), prev, song);;
 		while(i.hasNext())
 		{
 			next = root;
-			root = new DTreeNode(i.next(), prev);
+			root = new DTreeNode(i.next(), prev,  song);
 			prev = next;
 		}
 		
