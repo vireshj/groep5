@@ -1,8 +1,8 @@
 import java.util.ArrayList;
+import java.util.*;
 
 import javax.swing.*;
 
-import de.umass.lastfm.Tag;
 
 @SuppressWarnings("serial")
 public class tagsAanvinkPanel extends JPanel{
@@ -12,20 +12,24 @@ public class tagsAanvinkPanel extends JPanel{
 		super();
 	}
 	//hier wordt een tag toegevoegd aan de arraylist
-	public void add(ArrayList<Tag> x){
-		for(Tag tag: x){
-			tagCheckBox tagcheck = new tagCheckBox(new JCheckBox(tag.getName()),tag);
+	public void add(Collection<String> tag){
+		Iterator<String> x = tag.iterator();
+		while(x.hasNext()){
+			String tijdelijk = x.next();
+			tagCheckBox tagcheck = new tagCheckBox(new JCheckBox(tijdelijk),tijdelijk);
 			tags.add(tagcheck);
 			this.add(tagcheck.getJCheckBox());
+			System.out.println(tagcheck.getTag());
 		}
 	}
-	public ArrayList<Tag> getCheckedPanels(){
-		ArrayList<Tag> tagreturn = new ArrayList<Tag>();
+	public ArrayList<String> getCheckedPanels(){
+		ArrayList<String> tagreturn = new ArrayList<String>();
 		for(tagCheckBox tagcheck : tags){
 			if(tagcheck.getJCheckBox().isSelected()){
 				tagreturn.add(tagcheck.getTag());
 			}
 		}
+		System.out.println(tagreturn.toString());
 		return tagreturn;
 	}
 	

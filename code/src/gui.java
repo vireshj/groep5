@@ -4,6 +4,8 @@ import java.awt.FlowLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.swing.*;
 
 
@@ -16,6 +18,7 @@ public class gui extends JFrame{
 	private JButton ja = new JButton("ja");
 	private inlogPanel inlog = new inlogPanel();
 	private liedjeInvoerPanel invoer = new liedjeInvoerPanel();
+	private static tagsAanvinkPanel tags = new tagsAanvinkPanel();
 	private static verificatiePanel verificatieUser = new verificatiePanel();
 	private static feedbackSysteemPanel recommendation = new feedbackSysteemPanel() ;
 	private Lied gezocht;
@@ -55,11 +58,13 @@ public class gui extends JFrame{
 		container.add(verificatieUser);
 		container.add(ja);
 		container.add(nee);
+		container.add(tags);
 		ja.addMouseListener(new mouseHandler());
 		nee.addMouseListener(new mouseHandler());
 		verificatieUser.setVisible(true);
 		nee.setVisible(true);
 		ja.setVisible(true);
+		tags.setVisible(true);
 	}
 	public void reccomendatieScreen(){
 		container.removeAll();
@@ -118,6 +123,7 @@ public class gui extends JFrame{
 					container.add(new JLabel("kan liedje niet vinden"));
 				}
 				else{
+					tags.add(gezochtLied.getTag());
 					verificatieScreen();
 				}
 			}
@@ -125,9 +131,11 @@ public class gui extends JFrame{
 				ja.setVisible(false);
 				nee.setVisible(false);
 				verificatieUser.setVisible(false);
+				tags.setVisible(false);
 				container.remove(ja);
 				container.remove(nee);
 				container.remove(verificatieUser);
+				container.remove(tags);
 				//hier wordt er van de verificatie weer een Lied object gemaakt
 				//Als we weten wat voor object er wordt gemaakt in de controller zouden we deze ook in de gui opslaan
 				//zo hoeven we niet twee keer te zoeken
@@ -139,9 +147,11 @@ public class gui extends JFrame{
 				ja.setVisible(false);
 				nee.setVisible(false);
 				verificatieUser.setVisible(false);
+				tags.setVisible(false);
 				container.remove(ja);
 				container.remove(nee);
 				container.remove(verificatieUser);
+				container.remove(tags);
 				liedjeInvoerScreen();
 			}
 			if(e.getSource()==home){

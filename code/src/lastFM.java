@@ -14,12 +14,13 @@ public class lastFM {
 		
 		if(found.iterator().hasNext()){
 			Track gevonden = found.iterator().next();
+			gevonden = Track.getInfo(gevonden.getArtist(), gevonden.getMbid(), apiKey);
+			return new Lied(gevonden.getName(), gevonden.getArtist(), gevonden.getAlbum(), gevonden.getTags());
 		}
 		else{
-			 throw new Exception();
+			 throw new Exception();			 
 		}
-		Track gevonden = Track.getInfo(artists, song, apiKey);
-		return new Lied(gevonden.getName(), gevonden.getArtist(), gevonden.getAlbum(), gevonden.getTags());
+		
 	}
 	//retourneerd op basis van een Lied instantie similar liedjes.
 	public static ArrayList<Lied> similarSongs(Lied invoer){
