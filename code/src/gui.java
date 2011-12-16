@@ -112,7 +112,12 @@ public class gui extends JFrame{
 				container.remove(zoek);
 				gezocht = getInvoer();
 				gezochtLied = controller.findSong(gezocht);
-				verificatieScreen();
+				if(gezochtLied == null){
+					
+				}
+				else{
+					verificatieScreen();
+				}
 			}
 			if(e.getSource()==ja){
 				ja.setVisible(false);

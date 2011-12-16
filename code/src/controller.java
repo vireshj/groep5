@@ -15,9 +15,15 @@ public class controller {
 	// vind in de database een matching liedje.
 	public static Lied findSong(Lied invoer){
 		//hier worden methodes aangeroepen om de ingevoerde liedje te vinden in de db
-		Lied gevonden = lastFM.searchSong(invoer.getNaam(), invoer.getArtiest());
-		gui.setVerificatie(gevonden);
-		return gevonden;
+		try{
+			Lied gevonden = lastFM.searchSong(invoer.getNaam(), invoer.getArtiest());
+			gui.setVerificatie(gevonden);
+			return gevonden;
+		}
+		catch(Exception e){
+			System.out.println(e);
+			return null;
+		}
 	}
 	
 	//hier worden liedjes gevonden die de gebruiker mogelijk ook leuk zal vinden 
