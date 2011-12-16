@@ -43,7 +43,8 @@ public class DTreeNode {
 		//controle
 		for(Lied h : liedjes)
 		{
-			if(!yes.contains(h) && !song.equals(h))
+			
+			if(!yes.contains(h) && !song.equals(h) && ((isLeaf && yes.size() < n) || !isLeaf))
 			{
 				Collection<String> tags = h.getTag();
 				boolean isEqual = false;

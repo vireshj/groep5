@@ -21,7 +21,6 @@ public class controller {
 			return gevonden;
 		}
 		catch(Exception e){
-			System.out.println(e);
 			return null;
 		}
 	}
@@ -48,7 +47,12 @@ public class controller {
 				if(dummy.getName().equals(tagName))
 					tag = dummy;
 			}
-			tagLiedjes = lastFM.getTopTracks(tag);
+			try{
+				tagLiedjes = lastFM.getTopTracks(tag);
+			} catch(Exception e){
+				System.out.println(tag.getName());
+				tagLiedjes = new ArrayList<Lied>();
+			}
 			for(Lied liedje : tagLiedjes)
 			{				
 				liedjes.add(liedje);

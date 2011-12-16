@@ -43,6 +43,7 @@ public class gui extends JFrame{
 		login.setVisible(true);
 	}
 	public void liedjeInvoerScreen(){
+		container.removeAll();
 		container.add(invoer);
 		container.add(zoek);
 		zoek.addMouseListener(new mouseHandler());
@@ -50,6 +51,7 @@ public class gui extends JFrame{
 		zoek.setVisible(true);
 	}
 	public void verificatieScreen(){
+		container.removeAll();
 		container.add(verificatieUser);
 		container.add(ja);
 		container.add(nee);
@@ -60,12 +62,13 @@ public class gui extends JFrame{
 		ja.setVisible(true);
 	}
 	public void reccomendatieScreen(){
+		container.removeAll();
 		container.setLayout(null);
 		recommendation.addPanelSong();
 		container.add(recommendation);
 		container.add(home);
 		recommendation.setBounds(30, 30, 1130,300);
-		home.setBounds(550, 350, 60, 30); 
+		home.setBounds(550, 350, 80, 30); 
 		recommendation.setVisible(true);
 		home.setVisible(true);
 		home.addMouseListener(new mouseHandler());
@@ -147,6 +150,7 @@ public class gui extends JFrame{
 				container.remove(recommendation);
 				container.remove(home);
 				container.setLayout(new FlowLayout());
+				recommendation = new feedbackSysteemPanel(); 
 				liedjeInvoerScreen();
 			}
 			
