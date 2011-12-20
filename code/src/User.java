@@ -24,7 +24,7 @@ public class User {
 			Writer output = null;
 			File file = new File(username+".txt");
 			output = new BufferedWriter(new FileWriter(file));
-			output.write("");
+			output.write("yes \nno");
 			//Close the output stream
 			output.close();
 			Scanner sc = null;
