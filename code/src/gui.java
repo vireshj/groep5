@@ -46,6 +46,7 @@ public class gui extends JFrame{
 		login.setVisible(true);
 	}
 	public void liedjeInvoerScreen(){
+		zoek = new JButton("zoek");
 		container.removeAll();
 		container.add(invoer);
 		container.add(zoek);
@@ -69,6 +70,7 @@ public class gui extends JFrame{
 		tags.setVisible(true);
 	}
 	public void reccomendatieScreen(){
+		home  = new JButton("home");
 		container.removeAll();
 		container.setLayout(null);
 		recommendation.addPanelSong();
