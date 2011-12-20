@@ -22,7 +22,6 @@ public class gui extends JFrame{
 	private static verificatiePanel verificatieUser = new verificatiePanel();
 	private static feedbackSysteemPanel recommendation = new feedbackSysteemPanel() ;
 	private Lied gezocht;
-	private User user;
 	private String username;
 	private Container container;
 	private Lied gezochtLied = null;
@@ -123,6 +122,7 @@ public class gui extends JFrame{
 					container.add(new JLabel("kan liedje niet vinden"));
 				}
 				else{
+					tags = new tagsAanvinkPanel();
 					tags.add(gezochtLied.getTag());
 					verificatieScreen();
 				}
@@ -163,8 +163,6 @@ public class gui extends JFrame{
 				recommendation = new feedbackSysteemPanel(); 
 				liedjeInvoerScreen();
 			}
-			
-			
 		}
 	}
 }
