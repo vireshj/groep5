@@ -14,8 +14,8 @@ public class gui extends JFrame{
 	private JButton login = new JButton("login");
 	private JButton zoek = new JButton("zoek");
 	private JButton home = new JButton("home");
-	private JButton nee = new JButton("nee");
-	private JButton ja = new JButton("ja");
+	private JButton nee;
+	private JButton ja;
 	private inlogPanel inlog = new inlogPanel();
 	private liedjeInvoerPanel invoer = new liedjeInvoerPanel();
 	private static tagsAanvinkPanel tags = new tagsAanvinkPanel();
@@ -25,6 +25,7 @@ public class gui extends JFrame{
 	private String username;
 	private Container container;
 	private Lied gezochtLied = null;
+	private int aantal = 0;
 	
 	public gui (){
 		setTitle("groep5");
@@ -53,6 +54,8 @@ public class gui extends JFrame{
 		zoek.setVisible(true);
 	}
 	public void verificatieScreen(){
+		nee = new JButton("nee");
+		ja = new JButton("ja");
 		container.removeAll();
 		container.add(verificatieUser);
 		container.add(ja);
@@ -128,6 +131,8 @@ public class gui extends JFrame{
 				}
 			}
 			if(e.getSource()==ja){
+				System.out.println(aantal);
+				aantal++;
 				ja.setVisible(false);
 				nee.setVisible(false);
 				verificatieUser.setVisible(false);
