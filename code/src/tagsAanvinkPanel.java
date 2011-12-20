@@ -16,7 +16,7 @@ public class tagsAanvinkPanel extends JPanel{
 		Iterator<String> x = tag.iterator();
 		while(x.hasNext()){
 			String tijdelijk = x.next();
-			tagCheckBox tagcheck = new tagCheckBox(new JCheckBox(tijdelijk),tijdelijk);
+			tagCheckBox tagcheck = new tagCheckBox(new JCheckBox(tijdelijk,true),tijdelijk);
 			tags.add(tagcheck);
 			this.add(tagcheck.getJCheckBox());
 		//	System.out.println(tagcheck.getTag());
@@ -29,7 +29,6 @@ public class tagsAanvinkPanel extends JPanel{
 				tagreturn.add(tagcheck.getTag());
 			}
 		}
-		System.out.println(tagreturn.toString()+"trolol");
 		return tagreturn;
 	}
 }

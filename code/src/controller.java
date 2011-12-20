@@ -39,7 +39,7 @@ public class controller {
 		
 		for(String tagName : tags)
 		{
-			System.out.println(tagName);
+			//System.out.println(tagName);
 			Iterator<Tag> i = Tag.search(tagName, apiKey).iterator();
 			Tag tag = i.next();
 			while(!tag.getName().equals(tagName) && i.hasNext())
