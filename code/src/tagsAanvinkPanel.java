@@ -19,7 +19,7 @@ public class tagsAanvinkPanel extends JPanel{
 			tagCheckBox tagcheck = new tagCheckBox(new JCheckBox(tijdelijk),tijdelijk);
 			tags.add(tagcheck);
 			this.add(tagcheck.getJCheckBox());
-			System.out.println(tagcheck.getTag());
+		//	System.out.println(tagcheck.getTag());
 		}
 	}
 	public ArrayList<String> getCheckedPanels(){
@@ -29,8 +29,7 @@ public class tagsAanvinkPanel extends JPanel{
 				tagreturn.add(tagcheck.getTag());
 			}
 		}
-		System.out.println(tagreturn.toString());
+		System.out.println(tagreturn.toString()+"trolol");
 		return tagreturn;
 	}
-	
 }
