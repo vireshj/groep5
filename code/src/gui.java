@@ -14,8 +14,8 @@ public class gui extends JFrame{
 	private JButton login = new JButton("login");
 	private JButton zoek = new JButton("zoek");
 	private JButton home = new JButton("home");
-	private JButton nee = new JButton("nee");
-	private JButton ja = new JButton("ja");
+	private JButton nee;
+	private JButton ja;
 	private inlogPanel inlog = new inlogPanel();
 	private liedjeInvoerPanel invoer = new liedjeInvoerPanel();
 	private static tagsAanvinkPanel tags = new tagsAanvinkPanel();
@@ -25,6 +25,7 @@ public class gui extends JFrame{
 	private String username;
 	private Container container;
 	private Lied gezochtLied = null;
+	private int aantal = 0;
 	
 	public gui (){
 		setTitle("groep5");
@@ -45,6 +46,7 @@ public class gui extends JFrame{
 		login.setVisible(true);
 	}
 	public void liedjeInvoerScreen(){
+		zoek = new JButton("zoek");
 		container.removeAll();
 		container.add(invoer);
 		container.add(zoek);
@@ -53,6 +55,8 @@ public class gui extends JFrame{
 		zoek.setVisible(true);
 	}
 	public void verificatieScreen(){
+		nee = new JButton("nee");
+		ja = new JButton("ja");
 		container.removeAll();
 		container.add(verificatieUser);
 		container.add(ja);
@@ -66,6 +70,7 @@ public class gui extends JFrame{
 		tags.setVisible(true);
 	}
 	public void reccomendatieScreen(){
+		home  = new JButton("home");
 		container.removeAll();
 		container.setLayout(null);
 		recommendation.addPanelSong();
@@ -128,6 +133,8 @@ public class gui extends JFrame{
 				}
 			}
 			if(e.getSource()==ja){
+				System.out.println(aantal);
+				aantal++;
 				ja.setVisible(false);
 				nee.setVisible(false);
 				verificatieUser.setVisible(false);
@@ -136,11 +143,14 @@ public class gui extends JFrame{
 				container.remove(nee);
 				container.remove(verificatieUser);
 				container.remove(tags);
+				
 				//hier wordt er van de verificatie weer een Lied object gemaakt
 				//Als we weten wat voor object er wordt gemaakt in de controller zouden we deze ook in de gui opslaan
 				//zo hoeven we niet twee keer te zoeken
-				recommendation.clearList();
-				controller.findSimilarSongsDecisionTree(gezochtLied.getTag(), gezochtLied);
+				recommendation.clearList();          
+				gezochtLied.setTag(tags.getCheckedPanels());
+				controller.findSimilarSongsCluster(gezochtLied.getTag(), gezochtLied);
+
 				reccomendatieScreen();
 			}
 			if(e.getSource()==nee){

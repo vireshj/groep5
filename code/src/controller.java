@@ -33,13 +33,45 @@ public class controller {
 		gui.setFeedbackPanel(songs);
 		
 	}
+	
+	public static void findSimilarSongsCluster(Collection<String> tags, Lied song)
+	{
+		ArrayList<Lied> liedjes = new ArrayList<Lied>();
+		ArrayList<Lied> tagLiedjes;	
+		
+		for(String tagName : tags)
+		{
+			Iterator<Tag> i = Tag.search(tagName, apiKey).iterator();
+			Tag tag = i.next();
+			while(!tag.getName().equals(tagName) && i.hasNext())
+			{
+				Tag dummy = i.next();
+				if(dummy.getName().equals(tagName))
+					tag = dummy;
+			}
+			try{
+				tagLiedjes = lastFM.getTopTracks(tag);
+			} catch(Exception e){
+				System.out.println(tag.getName());
+				tagLiedjes = new ArrayList<Lied>();
+			}
+			for(Lied liedje : tagLiedjes)
+			{				
+				liedjes.add(liedje);
+			}
+		}
+		Cluster c = new Cluster(tags, song);
+		ArrayList<Lied> result = c.cluster(liedjes, 10);
+		gui.setFeedbackPanel(result);
+	}
+	
 	public static void findSimilarSongsDecisionTree(Collection<String> tags, Lied song){
 		ArrayList<Lied> liedjes = new ArrayList<Lied>();
 		ArrayList<Lied> tagLiedjes;	
 		
 		for(String tagName : tags)
 		{
-			System.out.println(tagName);
+			//System.out.println(tagName);
 			Iterator<Tag> i = Tag.search(tagName, apiKey).iterator();
 			Tag tag = i.next();
 			while(!tag.getName().equals(tagName) && i.hasNext())
