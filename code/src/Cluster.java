@@ -1,6 +1,5 @@
 import java.util.*;
 
-import de.umass.lastfm.Tag;
 
 
 public class Cluster {
@@ -44,14 +43,31 @@ public class Cluster {
 		
 		int l = clusters.size() - 1;
 		int m;
+		ArrayList<String> artiesten = new ArrayList<String>();
+		ArrayList<Integer> amount = new ArrayList<Integer>();
+		int artiestIndex;
+		Lied currentSong;
 		while(result.size() < n && l >= 0)
 		{
 			cluster = clusters.get(l);
 			m = 0;
 			while(m < cluster.size() && result.size() < n)
-			{
-				if(!result.contains(cluster.get(m)) && !cluster.get(m).equals(song))
-					result.add(cluster.get(m));
+			{				
+				currentSong = cluster.get(m);
+				if(!currentSong.equals(song) && !result.contains(currentSong))
+				{
+					artiestIndex = artiesten.indexOf(currentSong.getArtiest());
+					if(artiestIndex >= 0 && amount.get(artiestIndex) < 2)
+					{
+						result.add(currentSong);
+						amount.set(artiestIndex, amount.get(artiestIndex) + 1);
+					}else if(artiestIndex < 0)
+					{
+						result.add(currentSong);
+						artiesten.add(currentSong.getArtiest());
+						amount.add(1);
+					}
+				}
 				m++;
 			}
 			l--;

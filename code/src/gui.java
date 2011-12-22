@@ -25,7 +25,6 @@ public class gui extends JFrame{
 	private String username;
 	private Container container;
 	private Lied gezochtLied = null;
-	private int aantal = 0;
 	
 	public gui (){
 		setTitle("groep5");
@@ -133,8 +132,6 @@ public class gui extends JFrame{
 				}
 			}
 			if(e.getSource()==ja){
-				System.out.println(aantal);
-				aantal++;
 				ja.setVisible(false);
 				nee.setVisible(false);
 				verificatieUser.setVisible(false);
