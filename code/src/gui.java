@@ -116,6 +116,7 @@ public class gui extends JFrame{
 				zoek.setVisible(false);
 				container.remove(invoer);
 				container.remove(zoek);
+				container.remove(klaar);
 				gezocht = getInvoer();
 				playlist.add(gezocht);
 				liedjeInvoerScreen();
@@ -123,6 +124,11 @@ public class gui extends JFrame{
 				
 			}
 			if(e.getSource()==klaar){
+				invoer.setVisible(false);
+				zoek.setVisible(false);
+				container.remove(invoer);
+				container.remove(zoek);
+				container.remove(klaar);
 				playlist = controller.findSongs(playlist);
 				tags = new tagsAanvinkPanel();
 				for(Lied l : playlist){
