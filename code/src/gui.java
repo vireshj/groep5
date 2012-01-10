@@ -12,19 +12,20 @@ import javax.swing.*;
 @SuppressWarnings("serial")
 public class gui extends JFrame{
 	private JButton login = new JButton("login");
-	private JButton zoek = new JButton("zoek");
+	private JButton zoek  = new JButton("voeg toe");
 	private JButton home = new JButton("home");
-	private JButton nee;
+	private JButton klaar = new JButton("klaar");
+
 	private JButton ja;
 	private inlogPanel inlog = new inlogPanel();
 	private liedjeInvoerPanel invoer = new liedjeInvoerPanel();
 	private static tagsAanvinkPanel tags = new tagsAanvinkPanel();
-	private static verificatiePanel verificatieUser = new verificatiePanel();
 	private static feedbackSysteemPanel recommendation = new feedbackSysteemPanel() ;
 	private Lied gezocht;
 	private String username;
 	private Container container;
-	private Lied gezochtLied = null;
+	
+	private ArrayList<Lied> playlist = new ArrayList<Lied>();
 	
 	public gui (){
 		setTitle("groep5");
@@ -45,26 +46,25 @@ public class gui extends JFrame{
 		login.setVisible(true);
 	}
 	public void liedjeInvoerScreen(){
-		zoek = new JButton("zoek");
+		zoek = new JButton("voeg toe");
+		klaar  = new JButton("klaar");
 		container.removeAll();
 		container.add(invoer);
 		container.add(zoek);
+		container.add(klaar);
+		klaar.addMouseListener(new mouseHandler());
 		zoek.addMouseListener(new mouseHandler());
+		klaar.setVisible(true);
 		invoer.setVisible(true);
 		zoek.setVisible(true);
 	}
 	public void verificatieScreen(){
-		nee = new JButton("nee");
-		ja = new JButton("ja");
+		
+		ja = new JButton("klaar");
 		container.removeAll();
-		container.add(verificatieUser);
 		container.add(ja);
-		container.add(nee);
 		container.add(tags);
 		ja.addMouseListener(new mouseHandler());
-		nee.addMouseListener(new mouseHandler());
-		verificatieUser.setVisible(true);
-		nee.setVisible(true);
 		ja.setVisible(true);
 		tags.setVisible(true);
 	}
@@ -89,9 +89,6 @@ public class gui extends JFrame{
 		return inlog.getUserName();
 	}
 	
-	public static void setVerificatie(Lied invoer){
-		verificatieUser.setVerificatie(invoer);
-	}
 	public static void setFeedbackPanel(ArrayList<Lied> invoer){
 		
 		recommendation.makeTable(invoer.size());
@@ -120,46 +117,34 @@ public class gui extends JFrame{
 				container.remove(invoer);
 				container.remove(zoek);
 				gezocht = getInvoer();
-				gezochtLied = controller.findSong(gezocht);
-				if(gezochtLied == null){
-					liedjeInvoerScreen();
-					container.add(new JLabel("kan liedje niet vinden"));
+				playlist.add(gezocht);
+				liedjeInvoerScreen();
+				container.add(new JLabel(gezocht.getNaam() + " is succesvol toegevoegd"));
+				
+			}
+			if(e.getSource()==klaar){
+				playlist = controller.findSongs(playlist);
+				tags = new tagsAanvinkPanel();
+				for(Lied l : playlist){
+					tags.add(l.getTag());
+					
 				}
-				else{
-					tags = new tagsAanvinkPanel();
-					tags.add(gezochtLied.getTag());
-					verificatieScreen();
-				}
+				System.out.println("ehmm");
+				verificatieScreen();
+				
 			}
 			if(e.getSource()==ja){
 				ja.setVisible(false);
-				nee.setVisible(false);
-				verificatieUser.setVisible(false);
 				tags.setVisible(false);
 				container.remove(ja);
-				container.remove(nee);
-				container.remove(verificatieUser);
 				container.remove(tags);
 				
 				//hier wordt er van de verificatie weer een Lied object gemaakt
 				//Als we weten wat voor object er wordt gemaakt in de controller zouden we deze ook in de gui opslaan
 				//zo hoeven we niet twee keer te zoeken
 				recommendation.clearList();          
-				gezochtLied.setTag(tags.getCheckedPanels());
-				controller.findSimilarSongsCluster(gezochtLied.getTag(), gezochtLied);
-
+				controller.findSimilarSongsCluster(tags.getCheckedPanels(), playlist);
 				reccomendatieScreen();
-			}
-			if(e.getSource()==nee){
-				ja.setVisible(false);
-				nee.setVisible(false);
-				verificatieUser.setVisible(false);
-				tags.setVisible(false);
-				container.remove(ja);
-				container.remove(nee);
-				container.remove(verificatieUser);
-				container.remove(tags);
-				liedjeInvoerScreen();
 			}
 			if(e.getSource()==home){
 				home.setVisible(false);

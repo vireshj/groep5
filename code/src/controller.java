@@ -13,16 +13,21 @@ public class controller {
 		new gui();
 	}
 	// vind in de database een matching liedje.
-	public static Lied findSong(Lied invoer){
+	public static ArrayList<Lied> findSongs(ArrayList<Lied> invoerSongs)
+	{
 		//hier worden methodes aangeroepen om de ingevoerde liedje te vinden in de db
-		try{
-			Lied gevonden = lastFM.searchSong(invoer.getNaam(), invoer.getArtiest());
-			gui.setVerificatie(gevonden);
-			return gevonden;
+		
+		Lied gevonden;
+		ArrayList<Lied> gevondenLijst = new ArrayList<Lied>();
+		try {
+			for(Lied invoer : invoerSongs)
+			{
+				gevonden = lastFM.searchSong(invoer.getNaam(), invoer.getArtiest());
+				gevondenLijst.add(gevonden);
+			}
 		}
-		catch(Exception e){
-			return null;
-		}
+		catch(Exception e){}
+		return gevondenLijst;
 	}
 	
 	//hier worden liedjes gevonden die de gebruiker mogelijk ook leuk zal vinden 
