@@ -15,7 +15,7 @@ public class gui extends JFrame{
 	private JButton zoek  = new JButton("voeg toe");
 	private JButton home = new JButton("home");
 	private JButton klaar = new JButton("klaar");
-
+	private JLabel success;
 	private JButton ja;
 	private inlogPanel inlog = new inlogPanel();
 	private liedjeInvoerPanel invoer = new liedjeInvoerPanel();
@@ -120,10 +120,12 @@ public class gui extends JFrame{
 				gezocht = getInvoer();
 				playlist.add(gezocht);
 				liedjeInvoerScreen();
-				container.add(new JLabel(gezocht.getNaam() + " is succesvol toegevoegd"));
+				success = new JLabel(gezocht.getNaam() + " is succesvol toegevoegd");
+				container.add(success);
 				
 			}
 			if(e.getSource()==klaar){
+				container.remove(success);
 				invoer.setVisible(false);
 				zoek.setVisible(false);
 				container.remove(invoer);
@@ -160,6 +162,7 @@ public class gui extends JFrame{
 				container.setLayout(new FlowLayout());
 				recommendation = new feedbackSysteemPanel(); 
 				liedjeInvoerScreen();
+				playlist = new ArrayList<Lied>();
 			}
 		}
 	}

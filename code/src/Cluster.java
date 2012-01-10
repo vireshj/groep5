@@ -15,7 +15,7 @@ public class Cluster {
 	public ArrayList<Lied> cluster(ArrayList<Lied> liedjes , int n)
 	{
 		ArrayList<ArrayList<Lied>> clusters = new ArrayList<ArrayList<Lied>>();
-		for(int k = 0; k < tags.size(); k++)
+		for(int k = 0; k <= tags.size(); k++)
 		{
 			clusters.add(new ArrayList<Lied>());
 		}
@@ -30,14 +30,17 @@ public class Cluster {
 			count = 0;
 			liedje = liedjes.get(i);
 			tagNames = liedje.getTag();
+			String ss;
 			while(tagI.hasNext())
 			{
-				if(tagNames.contains(tagI.next()))
+				ss = tagI.next();
+				System.out.println(ss);
+				if(tagNames.contains(ss))
 				{
 					count++;
 				}
 			}
-			clusters.get(count-1).add(liedje);
+			clusters.get(count).add(liedje);
 		}
 		ArrayList<Lied> result = new ArrayList<Lied>();
 		

@@ -15,7 +15,7 @@ public class controller {
 	// vind in de database een matching liedje.
 	public static ArrayList<Lied> findSongs(ArrayList<Lied> invoerSongs)
 	{
-		//hier worden methodes aangeroepen om de ingevoerde liedje te vinden in de db
+	//hier worden methodes aangeroepen om de ingevoerde liedje te vinden in de db
 		
 		Lied gevonden;
 		ArrayList<Lied> gevondenLijst = new ArrayList<Lied>();
