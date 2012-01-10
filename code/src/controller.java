@@ -34,7 +34,7 @@ public class controller {
 		
 	}
 	
-	public static void findSimilarSongsCluster(Collection<String> tags, Lied song)
+	public static void findSimilarSongsCluster(Collection<String> tags, ArrayList<Lied> song)
 	{
 		ArrayList<Lied> liedjes = new ArrayList<Lied>();
 		ArrayList<Lied> tagLiedjes;	
@@ -64,14 +64,12 @@ public class controller {
 		ArrayList<Lied> result = c.cluster(liedjes, 10);
 		gui.setFeedbackPanel(result);
 	}
-	
-	public static void findSimilarSongsDecisionTree(Collection<String> tags, Lied song){
+		public static void findSimilairSongsDecisionTree(Collection<String> tags, Lied song){
 		ArrayList<Lied> liedjes = new ArrayList<Lied>();
 		ArrayList<Lied> tagLiedjes;	
 		
 		for(String tagName : tags)
 		{
-			//System.out.println(tagName);
 			Iterator<Tag> i = Tag.search(tagName, apiKey).iterator();
 			Tag tag = i.next();
 			while(!tag.getName().equals(tagName) && i.hasNext())

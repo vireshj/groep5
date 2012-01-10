@@ -4,12 +4,12 @@ import java.util.*;
 
 public class Cluster {
 	Collection<String> tags;
-	Lied song;
+	 ArrayList<Lied> songs;
 	
-	public Cluster(Collection<String> tags, Lied song)
+	public Cluster(Collection<String> tags, ArrayList<Lied> songs)
 	{
 		this.tags = tags;
-		this.song = song;
+		this.songs = songs;
 	}
 	
 	public ArrayList<Lied> cluster(ArrayList<Lied> liedjes , int n)
@@ -54,7 +54,7 @@ public class Cluster {
 			while(m < cluster.size() && result.size() < n)
 			{				
 				currentSong = cluster.get(m);
-				if(!currentSong.equals(song) && !result.contains(currentSong))
+				if(!songs.contains(currentSong) && !result.contains(currentSong))
 				{
 					artiestIndex = artiesten.indexOf(currentSong.getArtiest());
 					if(artiestIndex >= 0 && amount.get(artiestIndex) < 2)

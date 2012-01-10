@@ -1,6 +1,5 @@
 //test
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -62,13 +61,13 @@ public class User {
 		return false;
 
 	}
-
-	public static boolean fileIsEmpty(String username){
+	
+		public static boolean fileIsEmpty(String username){
 		try{
 			Scanner sc = new Scanner(new FileReader(username + ".txt"));
 			String data;
 			while (sc.hasNext()){
-				sc.next();
+                sc.next();
 				data = sc.next();
 				if(data.equals("no"))
 					return true;
@@ -80,43 +79,39 @@ public class User {
 		return false;
 
 	}
-
-	public void writeData(String username, ArrayList<String> selectedTag, ArrayList<String> unselectedTag, ArrayList<String> lied){
-		try{
-			FileWriter user = new FileWriter(username+".txt");
-			BufferedWriter output = new BufferedWriter(user);
+/*
+	public void writeData(String username, String selectedTag, String unselectedTag){
+            // Create file
+			Writer output = null;
+			File file = new File(username+".txt");
+			output = new BufferedWriter(new FileWriter(file));
 			if(fileIsEmpty(username)){
-				output.write("SelectedTags\n" + selectedTag + "UnselectedTags\n" + unselectedTag + "Tracks\n"+ lied);
-				output.close();
+    			output.write("yes\n"+selectedTag+"\nno"+unselectedTag);
+    			output.close();
 			}
 			else{
-				Scanner sc = null;
-				sc = new Scanner(new FileReader(username+".txt"));
-				String SelectedTags = "";
-				String UnselectedTags = "";
-				String liedjes = "";
-				SelectedTags = sc.next();
-				while (sc.hasNext())
-				{					
-					SelectedTags = SelectedTags + "\n" + sc.next();
-					if(sc.next().equals("UnselectedTags"))
-						while(sc.hasNext())
-							UnselectedTags = UnselectedTags + "\n" + sc.next();
-					FileWriter usernew = new FileWriter("Users.txt");
-					BufferedWriter outuser = new BufferedWriter(usernew);
-					outuser.write("\n" + username);
-					//Close the output stream
-					outuser.close();
-				}
-				}
+			Scanner sc = null;
+			sc = new Scanner(new FileReader(username+".txt"));
+			String yes = "";
+			String no = "";
+			yes = sc.next();
+			while (sc.hasNext())
+				yes = yes + "\n" + sc.next();
+				if(sc.next.equals("no"))
+				    while(sc.hasNext())
+                        no = no + "\n" + sc.next();
+			FileWriter usernew = new FileWriter("Users.txt");
+			BufferedWriter outuser = new BufferedWriter(usernew);
+			outuser.write(usernames + "\n" + username);
+			//Close the output stream
+			outuser.close();
 			}
-		
-		catch (FileNotFoundException e){
+		}catch (FileNotFoundException e){
 			e.printStackTrace();
 		}catch (Exception e){//Catch exception if any
 			System.err.println("Error: " + e.getMessage());
 		}
 	}
 
-
+*/
 }
