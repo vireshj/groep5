@@ -104,20 +104,25 @@ public class User {
 				selected = selected + T[i] + "\n";
 
 			if(fileIsEmpty(username)){
-				output.write("Selectedtags<" + selected + ">" + "unselectedTag<" + unselected + ">" + "Tracks<" + tracks + ">");
+				output.write("Selectedtags" + "\n" + selected + "\n" + "unselectedTag" + "\n" + unselected + "\n" + "Tracks" + "\n" + tracks);
 				output.close();
 			}
 			else{
 				Scanner sc = null;
 				sc = new Scanner(new FileReader(username+".txt"));
-				String yes = "";
-				String no = "";
-				yes = sc.next();
-				while (sc.hasNext())
-					yes = yes + "\n" + sc.next();
-				if(sc.next().equals("no"))
+				
+				if(sc.next().equals("Selectedtags")){
+					while(sc.hasNext() && !sc.next().equals("unselectedTag"))
+						selected = selected + sc.next() + "\n";
+				}
+				if(sc.next().equals("unselectedTag")){
+					while(sc.hasNext() && !sc.next().equals("Tracks"))
+						unselected = unselected + sc.next() + "\n";
+				}
+				if(sc.next().equals("Tracks")){
 					while(sc.hasNext())
-						no = no + "\n" + sc.next();
+						tracks = tracks + sc.next() + "\n";
+				}
 				FileWriter usernew = new FileWriter("Users.txt");
 				BufferedWriter outuser = new BufferedWriter(usernew);
 				outuser.write("\n" + username);
