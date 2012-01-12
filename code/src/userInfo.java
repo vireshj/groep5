@@ -1,25 +1,25 @@
 import java.util.*;
 
 public class userInfo {
-	private String selected;
-	private String unselected;
-	private String tracks;
+	private ArrayList<String> selected;
+	private ArrayList<String> unselected;
+	private ArrayList<String> tracks;
 	
-	public userInfo(String selected,String unselected, String tracks){
+	public userInfo(ArrayList<String> selected,ArrayList<String> unselected, ArrayList<String> tracks){
 		this.selected = selected;
 		this.unselected = unselected;
 		this.tracks = tracks;
 	}
 	
-	public String getSelected(){
+	public ArrayList<String>getSelected(){
 		return selected;
 	}
 	
-	public String getUnselected(){
+	public ArrayList<String> getUnselected(){
 		return unselected;
 	}
 	
-	public String getTracks(){
+	public ArrayList<String> getTracks(){
 		return tracks;
 	}
 }

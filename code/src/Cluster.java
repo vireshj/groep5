@@ -34,7 +34,6 @@ public class Cluster {
 			while(tagI.hasNext())
 			{
 				ss = tagI.next();
-				System.out.println(ss);
 				if(tagNames.contains(ss))
 				{
 					count++;

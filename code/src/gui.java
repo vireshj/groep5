@@ -137,9 +137,7 @@ public class gui extends JFrame{
 					tags.add(l.getTag());
 					
 				}
-				System.out.println("ehmm");
-				verificatieScreen();
-				
+				verificatieScreen();				
 			}
 			if(e.getSource()==ja){
 				ja.setVisible(false);
@@ -151,7 +149,15 @@ public class gui extends JFrame{
 				//Als we weten wat voor object er wordt gemaakt in de controller zouden we deze ook in de gui opslaan
 				//zo hoeven we niet twee keer te zoeken
 				recommendation.clearList();          
-				controller.findSimilarSongsCluster(tags.getCheckedPanels(), playlist);
+				ArrayList<String> selectedTag = tags.getCheckedPanels();
+				ArrayList<String> lied = new ArrayList<String>();
+				for(Lied l : playlist)
+				{
+					lied.add(l.toString());
+				}
+				ArrayList<String> unselectedTag = new ArrayList<String>();
+				User.writeData(username, selectedTag, unselectedTag, lied);
+				controller.findSimilarSongsCluster(selectedTag, playlist);
 				reccomendatieScreen();
 			}
 			if(e.getSource()==home){

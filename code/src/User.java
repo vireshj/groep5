@@ -81,12 +81,12 @@ public class User {
 
 	}
 
-	public userInfo readfile(String username)
+	public static userInfo readfile(String username)
 	{
 		userInfo user;
-		ArrayList<String> selected = new ArrayList();
-		ArrayList<String> unselected = new ArrayList();
-		ArrayList<String> tracks = new ArrayList();
+		ArrayList<String> selected = new ArrayList<String>();
+		ArrayList<String> unselected = new ArrayList<String>();
+		ArrayList<String> tracks = new ArrayList<String>();
 		Scanner sc = null;
 		try{
 			sc = new Scanner(new FileReader(username+".txt"));
@@ -112,7 +112,7 @@ public class User {
 		return user;
 	}
 
-	public void writeData(String username, ArrayList<String> selectedTag, ArrayList<String> unselectedTag, ArrayList<String> lied){
+	public static void writeData(String username, ArrayList<String> selectedTag, ArrayList<String> unselectedTag, ArrayList<String> lied){
 		try{
 			// Create file
 			Writer output = null;
@@ -134,13 +134,13 @@ public class User {
 			for(int i =0; i < T.length ; i++)
 				selected = selected + T[i] + "\n";
 
-			if(fileIsEmpty(username)){
+			Scanner sc = new Scanner(new FileReader(username+".txt"));
+			if(!sc.hasNext()){
 				output.write("Selectedtags" + "\n" + selected + "\n" + "unselectedTag" + "\n" + unselected + "\n" + "Tracks" + "\n" + tracks);
 				output.close();
 			}
 			else{
-				Scanner sc = null;
-				sc = new Scanner(new FileReader(username+".txt"));
+				
 
 				if(sc.next().equals("Selectedtags")){
 					while(sc.hasNext() && !sc.next().equals("unselectedTag"))
@@ -160,6 +160,7 @@ public class User {
 		}catch (FileNotFoundException e){
 			e.printStackTrace();
 		}catch (Exception e){//Catch exception if any
+			e.printStackTrace();
 			System.err.println("Error: " + e.getMessage());
 		}
 	}

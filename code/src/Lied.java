@@ -9,6 +9,14 @@ public class Lied {
 	String album;
 	Collection<String> tag;
 	
+	public Lied(String track)
+	{
+		String[] gegevens = track.split(",");
+		this.naam = gegevens[1];
+		this.artiest = gegevens[0];
+		this.album = "";
+	}
+	
 	public Lied(String naam, String artiest){
 		this.naam = naam;
 		this.artiest = artiest;
@@ -45,6 +53,11 @@ public class Lied {
 	}
 	public Collection<String> getTag(){
 		return this.tag;
+	}
+	
+	public String toString()
+	{
+		return this.artiest + "," + this.naam;
 	}
 	
 	public boolean equals(Object obj)

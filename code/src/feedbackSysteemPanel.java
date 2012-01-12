@@ -13,7 +13,6 @@ public class feedbackSysteemPanel extends JPanel {
 	
 	public void makeTable(int i){
 		table = new JTable(i, 6);
-		table.setFillsViewportHeight(true);
 	}
 	
 	public void adjustColumns()
