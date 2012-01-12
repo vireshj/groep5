@@ -24,6 +24,7 @@ public class gui extends JFrame{
 	private Lied gezocht;
 	private String username;
 	private Container container;
+	private userInfo gebruiker;
 	
 	private ArrayList<Lied> playlist = new ArrayList<Lied>();
 	
@@ -150,12 +151,31 @@ public class gui extends JFrame{
 				//zo hoeven we niet twee keer te zoeken
 				recommendation.clearList();          
 				ArrayList<String> selectedTag = tags.getCheckedPanels();
+				ArrayList<String> unselectedTag = tags.getUncheckedPanels();
 				ArrayList<String> lied = new ArrayList<String>();
 				for(Lied l : playlist)
 				{
 					lied.add(l.toString());
 				}
-				ArrayList<String> unselectedTag = new ArrayList<String>();
+				if(User.fileIsEmpty(username)){
+					User.writeData(username, selectedTag, unselectedTag, lied);
+				}
+				else{
+					gebruiker = User.readfile(username);
+					for(String s : gebruiker.getSelected())
+					{
+						selectedTag.add(s.toString());
+					}
+					for(String u : gebruiker.getUnselected())
+					{
+						unselectedTag.add(u.toString());
+					}
+					for(String t : gebruiker.getTracks())
+					{
+						lied.add(t.toString());
+					}
+					User.writeData(username, selectedTag, unselectedTag, lied);
+				}
 				User.writeData(username, selectedTag, unselectedTag, lied);
 				controller.findSimilarSongsCluster(selectedTag, playlist);
 				reccomendatieScreen();

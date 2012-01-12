@@ -31,4 +31,14 @@ public class tagsAanvinkPanel extends JPanel{
 		}
 		return tagreturn;
 	}
+	
+	public ArrayList<String> getUncheckedPanels(){
+		ArrayList<String> tagreturn = new ArrayList<String>();
+		for(tagCheckBox tagcheck : tags){
+			if(!tagcheck.getJCheckBox().isSelected()){
+				tagreturn.add(tagcheck.getTag());
+			}
+		}
+		return tagreturn;
+	}
 }

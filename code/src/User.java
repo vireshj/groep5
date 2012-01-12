@@ -25,7 +25,7 @@ public class User {
 			Writer output = null;
 			File file = new File(username+".txt");
 			output = new BufferedWriter(new FileWriter(file));
-			output.write("");
+			output.write("*");
 			//Close the output stream
 			output.close();
 			Scanner sc = null;
@@ -68,9 +68,8 @@ public class User {
 			Scanner sc = new Scanner(new FileReader(username + ".txt"));
 			String data;
 			while (sc.hasNext()){
-				sc.next();
 				data = sc.next();
-				if(data.equals("no"))
+				if(data.equals("*"))
 					return true;
 			}
 		}
@@ -84,24 +83,36 @@ public class User {
 	public static userInfo readfile(String username)
 	{
 		userInfo user;
+		String temp = "";
 		ArrayList<String> selected = new ArrayList<String>();
 		ArrayList<String> unselected = new ArrayList<String>();
 		ArrayList<String> tracks = new ArrayList<String>();
 		Scanner sc = null;
 		try{
 			sc = new Scanner(new FileReader(username+".txt"));
-
 			if(sc.next().equals("Selectedtags")){
-				while(sc.hasNext() && !sc.next().equals("unselectedTag"))
-					selected.add(sc.next());
+				while(sc.hasNext() && !temp.equals("UnselectedTag")){
+					temp = sc.nextLine();
+					if(temp.equals(""))
+						temp = sc.nextLine();						
+					if(!temp.equals("UnselectedTag"))
+						selected.add(temp);
+				}
 			}
-			if(sc.next().equals("unselectedTag")){
-				while(sc.hasNext() && !sc.next().equals("Tracks"))
-					unselected.add(sc.next());
+			if(temp.equals("UnselectedTag")){
+				while(sc.hasNext() && !temp.equals("Tracks"))
+				{
+					temp = sc.nextLine();
+					if(temp.equals(""))
+						temp = sc.nextLine();
+					if(!temp.equals("Tracks"))
+						unselected.add(temp);
+				}
 			}
-			if(sc.next().equals("Tracks")){
+			if(temp.equals("Tracks")){
 				while(sc.hasNext())
-					tracks.add(sc.next());
+					temp = sc.nextLine();
+					tracks.add(temp);
 
 			}
 			user = new userInfo(selected, unselected, tracks);
@@ -128,7 +139,7 @@ public class User {
 				tracks += s + "\n";
 
 			Scanner sc = new Scanner(new FileReader(username+".txt"));
-			output.write("Selectedtags" + "\n" + selected + "\n" + "unselectedTag" + "\n" + unselected + "\n" + "Tracks" + "\n" + tracks);
+			output.write("Selectedtags" + "\n" + selected + "UnselectedTag" + "\n" + unselected + "Tracks" + "\n" + tracks);
 			output.close();
 			
 		}catch (FileNotFoundException e){
