@@ -115,48 +115,22 @@ public class User {
 	public static void writeData(String username, ArrayList<String> selectedTag, ArrayList<String> unselectedTag, ArrayList<String> lied){
 		try{
 			// Create file
-			Writer output = null;
 			File file = new File(username+".txt");
-			output = new BufferedWriter(new FileWriter(file));
+			Writer output = new BufferedWriter(new FileWriter(file));
 			String selected = "";
 			String unselected = "";
 			String tracks = "";
-			String []sT = new String[selectedTag.size()];
-			selectedTag.toArray(sT);
-			for(int i =0; i < sT.length ; i++)
-				selected = selected + sT[i] + "\n";
-			String []uT = new String[unselectedTag.size()];
-			unselectedTag.toArray(uT);
-			for(int i =0; i < uT.length ; i++)
-				selected = selected + uT[i] + "\n";
-			String []T = new String[lied.size()];
-			lied.toArray(T);
-			for(int i =0; i < T.length ; i++)
-				selected = selected + T[i] + "\n";
+			for(String s : selectedTag)
+				selected += s + "\n";
+			for(String s : unselectedTag)
+				unselected += s + "\n";
+			for(String s : lied)
+				tracks += s + "\n";
 
 			Scanner sc = new Scanner(new FileReader(username+".txt"));
-			if(!sc.hasNext()){
-				output.write("Selectedtags" + "\n" + selected + "\n" + "unselectedTag" + "\n" + unselected + "\n" + "Tracks" + "\n" + tracks);
-				output.close();
-			}
-			else{
-				
-
-				if(sc.next().equals("Selectedtags")){
-					while(sc.hasNext() && !sc.next().equals("unselectedTag"))
-						selected = selected + sc.next() + "\n";
-				}
-				if(sc.next().equals("unselectedTag")){
-					while(sc.hasNext() && !sc.next().equals("Tracks"))
-						unselected = unselected + sc.next() + "\n";
-				}
-				if(sc.next().equals("Tracks")){
-					while(sc.hasNext())
-						tracks = tracks + sc.next() + "\n";
-				}
-				output.write("Selectedtags" + "\n" + selected + "\n" + "unselectedTag" + "\n" + unselected + "\n" + "Tracks" + "\n" + tracks);
-				output.close();
-			}
+			output.write("Selectedtags" + "\n" + selected + "\n" + "unselectedTag" + "\n" + unselected + "\n" + "Tracks" + "\n" + tracks);
+			output.close();
+			
 		}catch (FileNotFoundException e){
 			e.printStackTrace();
 		}catch (Exception e){//Catch exception if any
