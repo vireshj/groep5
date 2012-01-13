@@ -13,21 +13,16 @@ public class controller {
 		new gui();
 	}
 	// vind in de database een matching liedje.
-	public static ArrayList<Lied> findSongs(ArrayList<Lied> invoerSongs)
+	public static Lied findSong(Lied invoer)
 	{
 	//hier worden methodes aangeroepen om de ingevoerde liedje te vinden in de db
 		
 		Lied gevonden;
-		ArrayList<Lied> gevondenLijst = new ArrayList<Lied>();
 		try {
-			for(Lied invoer : invoerSongs)
-			{
-				gevonden = lastFM.searchSong(invoer.getNaam(), invoer.getArtiest());
-				gevondenLijst.add(gevonden);
-			}
+			gevonden = lastFM.searchSong(invoer.getNaam(), invoer.getArtiest());
 		}
-		catch(Exception e){}
-		return gevondenLijst;
+		catch(Exception e){return null;}
+		return gevonden;
 	}
 	
 	//hier worden liedjes gevonden die de gebruiker mogelijk ook leuk zal vinden 
@@ -47,7 +42,6 @@ public class controller {
 		for(String tagName : tags)
 		{
 			Iterator<Tag> i = Tag.search(tagName, apiKey).iterator();
-			System.out.println(".." +tagName + "..");
 			Tag tag = i.next();
 			while(!tag.getName().equals(tagName) && i.hasNext())
 			{

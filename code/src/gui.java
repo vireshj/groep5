@@ -126,14 +126,27 @@ public class gui extends JFrame{
 				container.remove(klaar);
 				container.remove(quickRecommend);
 				gezocht = getInvoer();
-				playlist.add(gezocht);
-				//er kan namelijk al eerder een lied toegevoegd zijn en we willen geen dubbele labels
-				if(success != null)
-					container.remove(success);
-				liedjeInvoerScreen();
-				//er wordt feedback gegeven over het liedje dat toegevoegd is.
-				success = new JLabel(gezocht.getNaam() + " is succesvol toegevoegd");
-				container.add(success);
+				Lied lied = controller.findSong(gezocht);
+				if(lied != null)
+				{
+					playlist.add(gezocht);
+					//er kan namelijk al eerder een lied toegevoegd zijn en we willen geen dubbele labels
+					if(success != null)
+						container.remove(success);
+					liedjeInvoerScreen();
+					//er wordt feedback gegeven over het liedje dat toegevoegd is.
+					success = new JLabel(lied.getNaam() + " is succesvol toegevoegd");
+					container.add(success);
+				} else {
+					//er kan namelijk al eerder een lied toegevoegd zijn en we willen geen dubbele labels
+					if(success != null)
+						container.remove(success);
+					liedjeInvoerScreen();
+					//er wordt feedback gegeven over het liedje dat toegevoegd is.
+					success = new JLabel(gezocht.getNaam() + " bestaat niet");
+					container.add(success);
+				}
+				
 
 			}
 			//wordt uitgevoerd als er op de klaar button wordt gedrukt
@@ -146,7 +159,6 @@ public class gui extends JFrame{
 				container.remove(quickRecommend);
 				container.remove(zoek);
 				container.remove(klaar);
-				playlist = controller.findSongs(playlist);
 				tags = new tagsAanvinkPanel();
 				for(Lied l : playlist){
 					tags.add(l.getTag());
@@ -163,7 +175,13 @@ public class gui extends JFrame{
 				container.remove(invoer);
 				container.remove(zoek);
 				container.remove(klaar);
-				//kaj moet toevoegen wat hier nog moet gebeuren
+				
+				gebruiker = User.readfile(username);
+				ArrayList<String> selectedTag = gebruiker.getSelected();
+				ArrayList<String> lied = gebruiker.getTracks();
+				
+				controller.findSimilarSongsCluster(selectedTag, playlist);
+				reccomendatieScreen();				
 			}
 			//wordt uitgevoerd als er op de ja button wordt gedrukt
 			if(e.getSource()==ja){
@@ -184,28 +202,21 @@ public class gui extends JFrame{
 					if(!unselectedTag.contains(l.toString()))
 						lied.add(l.toString());
 				}
-				if(User.fileIsEmpty(username)){
-					User.writeData(username, selectedTag, unselectedTag, lied);
+				gebruiker = User.readfile(username);
+				for(String s : gebruiker.getSelected())
+				{
+					if(!selectedTag.contains(s.toString()))
+						selectedTag.add(s.toString());
 				}
-				else{
-					gebruiker = User.readfile(username);
-					for(String s : gebruiker.getSelected())
-					{
-						if(!selectedTag.contains(s.toString()))
-							selectedTag.add(s.toString());
-					}
-					for(String u : gebruiker.getUnselected())
-					{
-						if(!unselectedTag.contains(u.toString()))
-							unselectedTag.add(u.toString());
-					}
-					for(String t : gebruiker.getTracks())
-					{
-						if(!lied.contains(t.toString()))
-							lied.add(t.toString());
-					}
-					System.out.println(lied);
-					User.writeData(username, selectedTag, unselectedTag, lied);
+				for(String u : gebruiker.getUnselected())
+				{
+					if(!unselectedTag.contains(u.toString()))
+						unselectedTag.add(u.toString());
+				}
+				for(String t : gebruiker.getTracks())
+				{
+					if(!lied.contains(t.toString()))
+						lied.add(t.toString());
 				}
 				User.writeData(username, selectedTag, unselectedTag, lied);
 				controller.findSimilarSongsCluster(selectedTag, playlist);
