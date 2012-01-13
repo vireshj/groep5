@@ -15,6 +15,7 @@ public class gui extends JFrame{
 	private JButton zoek  = new JButton("voeg toe");
 	private JButton home = new JButton("home");
 	private JButton klaar = new JButton("klaar");
+	private JButton quickRecommend = new JButton("Quick Recommend");
 	private JLabel success;
 	private JButton ja;
 	private inlogPanel inlog = new inlogPanel();
@@ -146,6 +147,16 @@ public class gui extends JFrame{
 					
 				}
 				verificatieScreen();				
+			}
+			if(e.getSource()==quickRecommend){
+				if(success != null)
+					container.remove(success);
+				invoer.setVisible(false);
+				zoek.setVisible(false);
+				container.remove(invoer);
+				container.remove(zoek);
+				container.remove(klaar);
+				//kaj moet toevoegen wat hier nog moet gebeuren
 			}
 			//wordt uitgevoerd als er op de ja button wordt gedrukt
 			if(e.getSource()==ja){
