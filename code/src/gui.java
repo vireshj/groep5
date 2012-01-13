@@ -128,7 +128,8 @@ public class gui extends JFrame{
 				gezocht = getInvoer();
 				playlist.add(gezocht);
 				//er kan namelijk al eerder een lied toegevoegd zijn en we willen geen dubbele labels
-				container.remove(success);
+				if(success != null)
+					container.remove(success);
 				liedjeInvoerScreen();
 				//er wordt feedback gegeven over het liedje dat toegevoegd is.
 				success = new JLabel(gezocht.getNaam() + " is succesvol toegevoegd");
