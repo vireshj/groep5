@@ -180,6 +180,10 @@ public class gui extends JFrame{
 				gebruiker = User.readfile(username);
 				ArrayList<String> selectedTag = gebruiker.getSelected();
 				ArrayList<String> lied = gebruiker.getTracks();
+				for(String s : lied)
+				{
+					playlist.add(new Lied(s));
+				}
 				
 				controller.findSimilarSongsCluster(selectedTag, playlist);
 				reccomendatieScreen();				
