@@ -152,6 +152,7 @@ public class gui extends JFrame{
 			//wordt uitgevoerd als er op de klaar button wordt gedrukt
 			if(e.getSource()==klaar){
 				if(success != null)
+					success.setVisible(false);
 					container.remove(success);
 				invoer.setVisible(false);
 				zoek.setVisible(false);
