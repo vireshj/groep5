@@ -201,7 +201,7 @@ public class gui extends JFrame{
 					}
 					for(String t : gebruiker.getTracks())
 					{
-						if(lied.contains(t.toString()))
+						if(!lied.contains(t.toString()))
 							lied.add(t.toString());
 					}
 					System.out.println(lied);
