@@ -50,10 +50,13 @@ public class gui extends JFrame{
 	public void liedjeInvoerScreen(){
 		zoek = new JButton("voeg toe");
 		klaar  = new JButton("klaar");
+		quickRecommend = new JButton("Quick Recommend");
 		container.removeAll();
+		container.add(quickRecommend);
 		container.add(invoer);
 		container.add(zoek);
 		container.add(klaar);
+		quickRecommend.addMouseListener(new mouseHandler());
 		klaar.addMouseListener(new mouseHandler());
 		zoek.addMouseListener(new mouseHandler());
 		klaar.setVisible(true);
@@ -121,11 +124,12 @@ public class gui extends JFrame{
 				container.remove(invoer);
 				container.remove(zoek);
 				container.remove(klaar);
+				container.remove(quickRecommend);
 				gezocht = getInvoer();
 				playlist.add(gezocht);
-				liedjeInvoerScreen();
 				//er kan namelijk al eerder een lied toegevoegd zijn en we willen geen dubbele labels
 				container.remove(success);
+				liedjeInvoerScreen();
 				//er wordt feedback gegeven over het liedje dat toegevoegd is.
 				success = new JLabel(gezocht.getNaam() + " is succesvol toegevoegd");
 				container.add(success);
@@ -138,6 +142,7 @@ public class gui extends JFrame{
 				invoer.setVisible(false);
 				zoek.setVisible(false);
 				container.remove(invoer);
+				container.remove(quickRecommend);
 				container.remove(zoek);
 				container.remove(klaar);
 				playlist = controller.findSongs(playlist);
@@ -153,6 +158,7 @@ public class gui extends JFrame{
 					container.remove(success);
 				invoer.setVisible(false);
 				zoek.setVisible(false);
+				container.remove(quickRecommend);
 				container.remove(invoer);
 				container.remove(zoek);
 				container.remove(klaar);
