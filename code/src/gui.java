@@ -26,9 +26,9 @@ public class gui extends JFrame{
 	private String username;
 	private Container container;
 	private userInfo gebruiker;
-	
+
 	private ArrayList<Lied> playlist = new ArrayList<Lied>();
-	
+
 	public gui (){
 		setTitle("groep5");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -64,7 +64,7 @@ public class gui extends JFrame{
 		zoek.setVisible(true);
 	}
 	public void verificatieScreen(){
-		
+
 		ja = new JButton("klaar");
 		container.removeAll();
 		container.add(ja);
@@ -89,13 +89,13 @@ public class gui extends JFrame{
 	public Lied getInvoer(){
 		return invoer.getLiedje();
 	}
-	
+
 	public String getNaamInvoer(){
 		return inlog.getUserName();
 	}
-	
+
 	public static void setFeedbackPanel(ArrayList<Lied> invoer){
-		
+
 		recommendation.makeTable(invoer.size());
 		for(int i = 0; i < invoer.size(); i++)
 		{
@@ -134,7 +134,7 @@ public class gui extends JFrame{
 				//er wordt feedback gegeven over het liedje dat toegevoegd is.
 				success = new JLabel(gezocht.getNaam() + " is succesvol toegevoegd");
 				container.add(success);
-				
+
 			}
 			//wordt uitgevoerd als er op de klaar button wordt gedrukt
 			if(e.getSource()==klaar){
@@ -150,7 +150,7 @@ public class gui extends JFrame{
 				tags = new tagsAanvinkPanel();
 				for(Lied l : playlist){
 					tags.add(l.getTag());
-					
+
 				}
 				verificatieScreen();				
 			}
@@ -171,7 +171,7 @@ public class gui extends JFrame{
 				tags.setVisible(false);
 				container.remove(ja);
 				container.remove(tags);
-				
+
 				//hier wordt er van de verificatie weer een Lied object gemaakt
 				//Als we weten wat voor object er wordt gemaakt in de controller zouden we deze ook in de gui opslaan
 				//zo hoeven we niet twee keer te zoeken
@@ -181,7 +181,8 @@ public class gui extends JFrame{
 				ArrayList<String> lied = new ArrayList<String>();
 				for(Lied l : playlist)
 				{
-					lied.add(l.toString());
+					if(!unselectedTag.contains(l.toString()))
+						lied.add(l.toString());
 				}
 				if(User.fileIsEmpty(username)){
 					User.writeData(username, selectedTag, unselectedTag, lied);
@@ -190,15 +191,18 @@ public class gui extends JFrame{
 					gebruiker = User.readfile(username);
 					for(String s : gebruiker.getSelected())
 					{
-						selectedTag.add(s.toString());
+						if(!selectedTag.contains(s.toString()))
+							selectedTag.add(s.toString());
 					}
 					for(String u : gebruiker.getUnselected())
 					{
-						unselectedTag.add(u.toString());
+						if(!unselectedTag.contains(u.toString()))
+							unselectedTag.add(u.toString());
 					}
 					for(String t : gebruiker.getTracks())
 					{
-						lied.add(t.toString());
+						if(lied.contains(t.toString()))
+							lied.add(t.toString());
 					}
 					System.out.println(lied);
 					User.writeData(username, selectedTag, unselectedTag, lied);
