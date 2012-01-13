@@ -90,33 +90,35 @@ public class User {
 		Scanner sc = null;
 		try{
 			sc = new Scanner(new FileReader(username+".txt"));
-			if(sc.next().equals("Selectedtags")){
-				while(sc.hasNext() && !temp.equals("UnselectedTag")){
-					temp = sc.nextLine();
-					if(temp.equals(""))
-						temp = sc.nextLine();						
-					if(!temp.equals("UnselectedTag"))
-						selected.add(temp);
+			if(sc.hasNext())
+			{
+				if(sc.next().equals("Selectedtags")){
+					while(sc.hasNext() && !temp.equals("UnselectedTag")){
+						temp = sc.nextLine();					
+						if(!temp.equals("UnselectedTag"))
+							selected.add(temp);
+					}
 				}
-			}
-			if(temp.equals("UnselectedTag")){
-				while(sc.hasNext() && !temp.equals("Tracks"))
-				{
-					temp = sc.nextLine();
-					if(temp.equals(""))
+				if(temp.equals("UnselectedTag")){
+					while(sc.hasNext() && !temp.equals("Tracks"))
+					{
 						temp = sc.nextLine();
-					if(!temp.equals("Tracks"))
-						unselected.add(temp);
+						if(!temp.equals("Tracks"))
+							unselected.add(temp);
+					}
 				}
-			}
-			if(temp.equals("Tracks")){
-				while(sc.hasNext())
-					temp = sc.nextLine();
-					tracks.add(temp);
+				if(temp.equals("Tracks")){
+					while(sc.hasNext())
+					{
+						temp = sc.nextLine();
+						tracks.add(temp);
+					}
 
+				}
 			}
 			user = new userInfo(selected, unselected, tracks);
 		}catch (Exception e){//Catch exception if any
+			e.printStackTrace();
 			System.err.println("Error: " + e.getMessage());
 			return null;
 		}
@@ -138,10 +140,9 @@ public class User {
 			for(String s : lied)
 				tracks += s + "\n";
 
-			Scanner sc = new Scanner(new FileReader(username+".txt"));
 			output.write("Selectedtags" + "\n" + selected + "UnselectedTag" + "\n" + unselected + "Tracks" + "\n" + tracks);
 			output.close();
-			
+
 		}catch (FileNotFoundException e){
 			e.printStackTrace();
 		}catch (Exception e){//Catch exception if any

@@ -126,7 +126,8 @@ public class gui extends JFrame{
 				
 			}
 			if(e.getSource()==klaar){
-				container.remove(success);
+				if(success != null)
+					container.remove(success);
 				invoer.setVisible(false);
 				zoek.setVisible(false);
 				container.remove(invoer);
@@ -174,6 +175,7 @@ public class gui extends JFrame{
 					{
 						lied.add(t.toString());
 					}
+					System.out.println(lied);
 					User.writeData(username, selectedTag, unselectedTag, lied);
 				}
 				User.writeData(username, selectedTag, unselectedTag, lied);
