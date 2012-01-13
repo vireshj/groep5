@@ -129,7 +129,7 @@ public class gui extends JFrame{
 				Lied lied = controller.findSong(gezocht);
 				if(lied != null)
 				{
-					playlist.add(gezocht);
+					playlist.add(lied);
 					//er kan namelijk al eerder een lied toegevoegd zijn en we willen geen dubbele labels
 					if(success != null)
 						container.remove(success);
