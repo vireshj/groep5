@@ -95,7 +95,7 @@ public class User {
 				if(sc.next().equals("Selectedtags")){
 					while(sc.hasNext() && !temp.equals("UnselectedTag")){
 						temp = sc.nextLine();					
-						if(!temp.equals("UnselectedTag"))
+						if(!temp.equals("UnselectedTag") && !temp.equals(""))
 							selected.add(temp);
 					}
 				}
@@ -103,7 +103,7 @@ public class User {
 					while(sc.hasNext() && !temp.equals("Tracks"))
 					{
 						temp = sc.nextLine();
-						if(!temp.equals("Tracks"))
+						if(!temp.equals("Tracks") && !temp.equals(""))
 							unselected.add(temp);
 					}
 				}
@@ -111,7 +111,8 @@ public class User {
 					while(sc.hasNext())
 					{
 						temp = sc.nextLine();
-						tracks.add(temp);
+						if(!temp.equals(""))
+							tracks.add(temp);					
 					}
 
 				}
