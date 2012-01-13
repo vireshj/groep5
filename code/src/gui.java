@@ -102,6 +102,7 @@ public class gui extends JFrame{
 	//hier worden de mouse inputs verwerkt
 	class mouseHandler extends MouseAdapter{
 		public void mouseClicked(MouseEvent e){
+			//wordt uitgevoerd als er op de login button wordt gedrukt
 			if(e.getSource()==login){
 				inlog.setVisible(false);
 				login.setVisible(false);
@@ -112,6 +113,7 @@ public class gui extends JFrame{
 					User.makeUserFile(username);					
 				liedjeInvoerScreen();
 			}
+			//wordt uitgevoerd als er op de zoek button wordt gedrukt
 			if(e.getSource()==zoek){
 				invoer.setVisible(false);
 				zoek.setVisible(false);
@@ -121,10 +123,14 @@ public class gui extends JFrame{
 				gezocht = getInvoer();
 				playlist.add(gezocht);
 				liedjeInvoerScreen();
+				//er kan namelijk al eerder een lied toegevoegd zijn en we willen geen dubbele labels
+				container.remove(success);
+				//er wordt feedback gegeven over het liedje dat toegevoegd is.
 				success = new JLabel(gezocht.getNaam() + " is succesvol toegevoegd");
 				container.add(success);
 				
 			}
+			//wordt uitgevoerd als er op de klaar button wordt gedrukt
 			if(e.getSource()==klaar){
 				if(success != null)
 					container.remove(success);
@@ -141,6 +147,7 @@ public class gui extends JFrame{
 				}
 				verificatieScreen();				
 			}
+			//wordt uitgevoerd als er op de ja button wordt gedrukt
 			if(e.getSource()==ja){
 				ja.setVisible(false);
 				tags.setVisible(false);
@@ -182,6 +189,7 @@ public class gui extends JFrame{
 				controller.findSimilarSongsCluster(selectedTag, playlist);
 				reccomendatieScreen();
 			}
+			//wordt uitgevoerd als er op de home button wordt gedrukt
 			if(e.getSource()==home){
 				home.setVisible(false);
 				recommendation.setVisible(false);
