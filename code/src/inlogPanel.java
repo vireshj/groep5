@@ -1,11 +1,12 @@
 import java.awt.*;
+import java.awt.event.MouseListener;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
-public class inlogPanel extends JPanel {
+public class inlogPanel extends JPanel{
 
 	private JTextField inlogNaam = new JTextField("voer in",30);
 	private JLabel inlogInvoer = new JLabel("Naam");
