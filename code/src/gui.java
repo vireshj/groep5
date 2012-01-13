@@ -1,8 +1,6 @@
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -18,7 +16,8 @@ public class gui extends JFrame{
 	private JButton home = new JButton("home");
 	private JButton klaar = new JButton("klaar");
 	private JButton quickRecommend = new JButton("Quick Recommend");
-	private JLabel success;
+	private JLabel success = new JLabel("");
+	private JLabel successie = new JLabel("");
 	private JButton ja;
 	private inlogPanel inlog = new inlogPanel();
 	private liedjeInvoerPanel invoer = new liedjeInvoerPanel();
@@ -28,6 +27,7 @@ public class gui extends JFrame{
 	private String username;
 	private Container container;
 	private userInfo gebruiker;
+	private boolean fail = false;
 
 	private ArrayList<Lied> playlist = new ArrayList<Lied>();
 
@@ -41,6 +41,7 @@ public class gui extends JFrame{
 		container.setBackground(Color.white);
 		startScreen();
 		setVisible(true);
+		container.add(success);
 	}
 	public void startScreen(){
 		container.add(inlog);
@@ -58,6 +59,7 @@ public class gui extends JFrame{
 		container.add(invoer);
 		container.add(zoek);
 		container.add(klaar);
+		container.add(success);
 		quickRecommend.addMouseListener(new mouseHandler());
 		klaar.addMouseListener(new mouseHandler());
 		zoek.addMouseListener(new mouseHandler());
@@ -71,17 +73,26 @@ public class gui extends JFrame{
 		container.removeAll();
 		container.add(ja);
 		container.add(tags);
+		container.add(success);
 		ja.addMouseListener(new mouseHandler());
 		ja.setVisible(true);
 		tags.setVisible(true);
 	}
 	public void reccomendatieScreen(){
+		successie = new JLabel("");
 		home  = new JButton("home");
 		container.removeAll();
 		container.setLayout(null);
 		recommendation.addPanelSong();
 		container.add(recommendation);
 		container.add(home);
+		container.add(successie);
+		successie.setVisible(true);
+		if(fail){
+			container.remove(recommendation);
+			successie.setText("Niet mogelijk om te recommenderen: er zijn geen tags bekend van u");
+		}
+		successie.setBounds(300, 120, 700, 30 );
 		recommendation.setBounds(30, 30, 1130,180);
 		home.setBounds(550, 220, 80, 30); 
 		recommendation.setVisible(true);
@@ -132,30 +143,19 @@ public class gui extends JFrame{
 				if(lied != null)
 				{
 					playlist.add(lied);
-					//er kan namelijk al eerder een lied toegevoegd zijn en we willen geen dubbele labels
-					if(success != null)
-						container.remove(success);
 					liedjeInvoerScreen();
 					//er wordt feedback gegeven over het liedje dat toegevoegd is.
-					success = new JLabel(lied.getNaam() + " is succesvol toegevoegd");
-					container.add(success);
+					success.setText(lied.getNaam() + " is succesvol toegevoegd");
 				} else {
-					//er kan namelijk al eerder een lied toegevoegd zijn en we willen geen dubbele labels
-					if(success != null)
-						container.remove(success);
 					liedjeInvoerScreen();
-					//er wordt feedback gegeven over het liedje dat toegevoegd is.
-					success = new JLabel(gezocht.getNaam() + " bestaat niet");
-					container.add(success);
+					success.setText(gezocht.getNaam() + " bestaat niet");
 				}
-				
+
 
 			}
 			//wordt uitgevoerd als er op de klaar button wordt gedrukt
 			if(e.getSource()==klaar){
-				if(success != null)
-					success.setVisible(false);
-					container.remove(success);
+				success.setText("");
 				invoer.setVisible(false);
 				zoek.setVisible(false);
 				container.remove(invoer);
@@ -170,15 +170,15 @@ public class gui extends JFrame{
 				verificatieScreen();				
 			}
 			if(e.getSource()==quickRecommend){
-				if(success != null)
-					container.remove(success);
 				invoer.setVisible(false);
 				zoek.setVisible(false);
+				klaar.setVisible(false);
+				quickRecommend.setVisible(false);
 				container.remove(quickRecommend);
 				container.remove(invoer);
 				container.remove(zoek);
 				container.remove(klaar);
-				
+
 				gebruiker = User.readfile(username);
 				ArrayList<String> selectedTag = gebruiker.getSelected();
 				ArrayList<String> lied = gebruiker.getTracks();
@@ -186,9 +186,16 @@ public class gui extends JFrame{
 				{
 					playlist.add(new Lied(s));
 				}
-				
-				controller.findSimilarSongsCluster(selectedTag, playlist);
-				reccomendatieScreen();				
+				if(selectedTag.size() > 0)
+				{
+					fail = false;
+					success.setText("");
+					controller.findSimilarSongsCluster(selectedTag, playlist);
+				}else
+				{
+					fail = true;
+				}
+				reccomendatieScreen();			
 			}
 			//wordt uitgevoerd als er op de ja button wordt gedrukt
 			if(e.getSource()==ja){
