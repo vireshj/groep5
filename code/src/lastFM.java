@@ -11,7 +11,7 @@ public class lastFM {
 	//Zoekt een lied in de lastFM database op lied-nummer en artiest
 	public static Lied searchSong(String song, String artists) throws Exception{
 		Track gevonden = Track.getInfo(artists, song, apiKey);
-		return new Lied(gevonden.getName(), gevonden.getArtist(), gevonden.getAlbum(), gevonden.getTags());
+		return new Lied(gevonden.getName(), gevonden.getArtist(), gevonden.getAlbum(), gevonden.getTags(),gevonden.getId());
 	}
 	//retourneerd op basis van een Lied instantie similar liedjes.
 	public static ArrayList<Lied> similarSongs(Lied invoer){
@@ -36,7 +36,7 @@ public class lastFM {
 			Track lastInput = x.next();
 			i++;
 			Track gevonden = Track.getInfo(lastInput.getArtist(), lastInput.getName(), apiKey);
-			Lied input = new Lied(gevonden.getName(), gevonden.getArtist(), gevonden.getAlbum(), gevonden.getTags());
+			Lied input = new Lied(gevonden.getName(), gevonden.getArtist(), gevonden.getAlbum(), gevonden.getTags(), gevonden.getId());
 			liedjes.add(input);
 		}
 

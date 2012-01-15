@@ -35,13 +35,14 @@
 	
 		//recommendeer methode die gebruik maakt van klasse Cluster om de best overeenkomende liedjes te geven  i.v.m. de gegeven lijst
 		//huidige recommendeer methode
-		public static void findSimilarSongsCluster(Collection<String> tags, ArrayList<Lied> song)
+		public static ArrayList<Lied> findSimilarSongsCluster(Collection<String> tags, ArrayList<Lied> song)
 		{
 			ArrayList<Lied> liedjes = new ArrayList<Lied>();
 			ArrayList<Lied> tagLiedjes;	
 	
 			for(String tagName : tags)
 			{
+				
 				Iterator<Tag> i = Tag.search(tagName, apiKey).iterator();
 				Tag tag = i.next();
 				while(!tag.getName().equals(tagName) && i.hasNext())
@@ -53,7 +54,7 @@
 				try{
 					tagLiedjes = lastFM.getTopTracks(tag);
 				} catch(Exception e){
-					System.out.println(tag.getName());
+					//System.out.println(tag.getName());
 					tagLiedjes = new ArrayList<Lied>();
 				}
 				for(Lied liedje : tagLiedjes)
@@ -64,6 +65,7 @@
 			Cluster c = new Cluster(tags, song);
 			ArrayList<Lied> result = c.cluster(liedjes, 10);
 			gui.setFeedbackPanel(result);
+			return result;
 		}
 	
 		//methode om te klassificeren m.b.v. een decision tree.
@@ -85,7 +87,7 @@
 				try{
 					tagLiedjes = lastFM.getTopTracks(tag);
 				} catch(Exception e){
-					System.out.println(tag.getName());
+					//System.out.println(tag.getName());
 					tagLiedjes = new ArrayList<Lied>();
 				}
 				for(Lied liedje : tagLiedjes)

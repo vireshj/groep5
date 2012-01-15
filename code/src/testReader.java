@@ -1,52 +1,76 @@
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.*;
 
 
 public class testReader {
 	public static void main(String [] args) {
-		ArrayList<Lied> anandport = readFile("/Users/viresh_2090/TUDelft/groep5/documenten/test_playlists/test2.txt");
-		if(anandport != null)
+		//hier wordt de gegevens van de txt file in een arraylist van liedjes gestopt
+		ArrayList<Lied> anandport = readFile("/Users/viresh_2090/TUDelft/groep5/documenten/test playlists/test7.txt");
+		// deze arraylist bevat uiteindelijk de gevonden liedjes van de user playlist met de lastFM database
+		ArrayList<Lied> playlist = new ArrayList<Lied>();
+		for(Lied l : anandport){
+			Lied tijdelijk = controller.findSong(l);
+			if(tijdelijk != null){
+				//liedje is gevonden en wordt toegevoegd aan de database
+				playlist.add(tijdelijk);
+			}
+		}
+		//als de playlist niet leeg is dan wordt de helft van de playlist weg gehaald en opgeslagen in removedPlaylist
+		if(playlist != null)
 		{
-			ArrayList<Lied> removedAnandPort = new ArrayList<Lied>();
+			ArrayList<Lied> removedPlaylist = new ArrayList<Lied>();
 			Random r = new Random();
-			while(removedAnandPort.size() < 10)
+			int n = playlist.size() / 2;
+			while(removedPlaylist.size() < n)
 			{
-				int random = r.nextInt(anandport.size() - 1);
-				Lied l = anandport.get(random);
-				if(!removedAnandPort.contains(l))
+				int random = r.nextInt(playlist.size() - 1);
+				Lied l = playlist.get(random);
+				if(!removedPlaylist.contains(l))
 				{
-					removedAnandPort.add(anandport.remove(random));
+					removedPlaylist.add(playlist.remove(random));
 				}
 			}
+			// we printen elk liedje uit
+			System.out.println("weggelaten nummers:");
+			for(Lied l : removedPlaylist){
+				System.out.println(l.getArtiest() +" - "+l.getNaam());
+			}
 			ArrayList<String> tags = new ArrayList<String>();
-			
-			for(Lied k : anandport)
+
+			for(Lied k : playlist)
 			{
-				k = controller.findSong(k);
 				for(String s : k.getTag())
 				{
 					if(!tags.contains(s))
 					{
 						tags.add(s);
-						}
 					}
 				}
-			
-			ArrayList<Lied> result = controller.findSimilarSongsCluster(tags, anandport);
+			}
+			// we gaan nu op de playlist met weg gehaalde liedjes een recommandatie uitvoeren
+			ArrayList<Lied> result = controller.findSimilarSongsCluster(tags, playlist);
+			System.out.println("\nRecommandatie: ");
+			for(Lied k : result){
+				System.out.println(k.getArtiest()+ " - " + k.getNaam());
+			}
+			// we gaan nu kijken hoeveel er overeen komen
 			int count = 0;
 			for(Lied k : result)
 			{
-				if(removedAnandPort.contains(k))
+				for( Lied z : removedPlaylist)
 				{
-					count++;
+					//een liedje komt overeen als het dezelde id heeft
+					if(z.getMBID().equals(k.getMBID()))
+						count++;
 				}
 			}
-			System.out.println(count);
+			//Hier wordt uitgeprint hoeveel liedjes er terug gevonden zijn
+			System.out.println("Matches :\n"+count +"/"+ n);
 		}
 
 
 	}
+	//hier wordt de txt file ingelezen
 	public static ArrayList<Lied> readFile(String file){
 		try {
 			ArrayList <Lied> playlist = new ArrayList<Lied>();

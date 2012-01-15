@@ -1,13 +1,12 @@
 import java.util.Collection;
 
-import de.umass.lastfm.Tag;
-
 public class Lied {
-//zoiets?
 	String naam;
 	String artiest;
 	String album;
 	Collection<String> tag;
+	boolean tagNotNull = false;
+	String mbid;
 	
 	public Lied(String track)
 	{
@@ -23,11 +22,15 @@ public class Lied {
 		this.album = "";
 		//this.tag = null;
 	}
-	public Lied(String naam, String artiest, String album, Collection<String> tag){
+	public Lied(String naam, String artiest, String album, Collection<String> tag, String mbid){
 		this.naam = naam;
 		this.artiest = artiest;
 		this.album = album;
 		this.tag = tag;
+		this.mbid = mbid;
+		if(tag != null){
+			this.tagNotNull = true;
+		}
 	}
 	public void setNaam(String naam){
 		this.naam = naam;
@@ -53,6 +56,9 @@ public class Lied {
 	}
 	public Collection<String> getTag(){
 		return this.tag;
+	}
+	public String getMBID(){
+		return this.mbid;
 	}
 	
 	public String toString()

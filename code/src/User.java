@@ -19,6 +19,20 @@ public class User {
 		return naam;
 	}
 
+	public static void reset(String username){
+		try{
+			// Create file 
+			Writer output = null;
+			File file = new File(username+".txt");
+			output = new BufferedWriter(new FileWriter(file));
+			output.write("*");
+			//Close the output stream
+			output.close();
+		}catch (Exception e){//Catch exception if any
+			System.err.println("Error: " + e.getMessage());
+		}
+	}
+
 	public static void makeUserFile(String username){
 		try{
 			// Create file 

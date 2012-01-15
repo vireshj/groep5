@@ -15,6 +15,7 @@ public class gui extends JFrame{
 	private JButton zoek  = new JButton("voeg toe");
 	private JButton home = new JButton("home");
 	private JButton klaar = new JButton("klaar");
+	private JButton reset = new JButton("Reset");
 	private JButton quickRecommend = new JButton("Quick Recommend");
 	private JLabel success = new JLabel("");
 	private JLabel successie = new JLabel("");
@@ -54,22 +55,29 @@ public class gui extends JFrame{
 		zoek = new JButton("voeg toe");
 		klaar  = new JButton("klaar");
 		quickRecommend = new JButton("Quick Recommend");
+		reset = new JButton("reset");
 		container.removeAll();
 		container.add(quickRecommend);
 		container.add(invoer);
 		container.add(zoek);
 		container.add(klaar);
+		container.add(reset);
 		container.add(success);
 		quickRecommend.addMouseListener(new mouseHandler());
 		klaar.addMouseListener(new mouseHandler());
 		zoek.addMouseListener(new mouseHandler());
+		reset.addMouseListener(new mouseHandler());
+		reset.setVisible(true);
 		klaar.setVisible(true);
+		success.setVisible(true);
 		invoer.setVisible(true);
 		zoek.setVisible(true);
 	}
 	public void verificatieScreen(){
-
+		fail = false;
 		ja = new JButton("klaar");
+		success.setVisible(false);
+		reset.setVisible(false);
 		container.removeAll();
 		container.add(ja);
 		container.add(tags);
@@ -80,6 +88,7 @@ public class gui extends JFrame{
 	}
 	public void reccomendatieScreen(){
 		successie = new JLabel("");
+		
 		home  = new JButton("home");
 		container.removeAll();
 		container.setLayout(null);
@@ -93,7 +102,7 @@ public class gui extends JFrame{
 			successie.setText("Niet mogelijk om te recommenderen: er zijn geen tags bekend van u");
 		}
 		successie.setBounds(300, 120, 700, 30 );
-		recommendation.setBounds(30, 30, 1130,180);
+		recommendation.setBounds(30, 30, 1200,180);
 		home.setBounds(550, 220, 80, 30); 
 		recommendation.setVisible(true);
 		home.setVisible(true);
@@ -136,6 +145,7 @@ public class gui extends JFrame{
 				zoek.setVisible(false);
 				container.remove(invoer);
 				container.remove(zoek);
+				container.remove(reset);
 				container.remove(klaar);
 				container.remove(quickRecommend);
 				gezocht = getInvoer();
@@ -159,6 +169,7 @@ public class gui extends JFrame{
 				invoer.setVisible(false);
 				zoek.setVisible(false);
 				container.remove(invoer);
+				container.remove(reset);
 				container.remove(quickRecommend);
 				container.remove(zoek);
 				container.remove(klaar);
@@ -170,12 +181,16 @@ public class gui extends JFrame{
 				verificatieScreen();				
 			}
 			if(e.getSource()==quickRecommend){
+				success.setText(" ");
 				invoer.setVisible(false);
 				zoek.setVisible(false);
 				klaar.setVisible(false);
+				success.setVisible(false);
 				quickRecommend.setVisible(false);
 				container.remove(quickRecommend);
+				container.remove(success);
 				container.remove(invoer);
+				container.remove(reset);
 				container.remove(zoek);
 				container.remove(klaar);
 
@@ -246,6 +261,11 @@ public class gui extends JFrame{
 				recommendation = new feedbackSysteemPanel(); 
 				liedjeInvoerScreen();
 				playlist = new ArrayList<Lied>();
+			}
+			//wordt uitgevoerd als er op de reset button wordt gedrukt
+			if(e.getSource()==reset){
+				success.setText("uw geschiedenis is succesvol verwijderd");
+				User.reset(username);
 			}
 		}
 	}

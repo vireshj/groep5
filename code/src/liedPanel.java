@@ -33,6 +33,6 @@ public class liedPanel extends JTable {
 		this.album.setText(invoer.getAlbum());
 	}
 	public Lied getLiedPanel(){
-		return new Lied(nummer.getText(),artiest.getText(), album.getText(),null);
+		return new Lied(nummer.getText(),artiest.getText(), album.getText(),null, "temp");
 	}
 }
