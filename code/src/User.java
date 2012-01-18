@@ -1,4 +1,3 @@
-//test
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -6,19 +5,28 @@ import java.util.Scanner;
 
 public class User {
 	private	String naam;
-
+	/** 
+	 * maakt een nieuwe User klasse met de meegegeven parameter : String naam
+	 */
 	public User(String naam){
 		this.naam = naam;
 	}
-
+	/** 
+	 * set de naam van deze klasse naar de meegegeven parameter : String naam
+	 */
 	public void setNaam(String naam){
 		this.naam = naam;
 	}
-
+	/** 
+	 * Retourneert de naam deze klasse
+	 * @return String naam 
+	 */
 	public String getNaam(){
 		return naam;
 	}
-
+	/** 
+	 * De gegevens van de user wordt gereset, de parameter String username bepaald welke user
+	 */
 	public static void reset(String username){
 		try{
 			// Create file 
@@ -32,7 +40,9 @@ public class User {
 			System.err.println("Error: " + e.getMessage());
 		}
 	}
-
+	/** 
+	 * Maakt een nieuwe file aan op basis van de meegevene parameter : String username
+	 */
 	public static void makeUserFile(String username){
 		try{
 			// Create file 
@@ -58,7 +68,10 @@ public class User {
 			System.err.println("Error: " + e.getMessage());
 		}
 	}
-
+	/** 
+	 * Retourneert true als de user bestaat anders false
+	 * @return boolean true als de user bestaat anders false
+	 */
 	//retourneerd true als de user al bestaat anders retourneerd het false
 	public static boolean userExists(String username){
 		try{
@@ -76,7 +89,10 @@ public class User {
 		return false;
 
 	}
-
+	/** 
+	 * Retourneert true als de file niet leeg is anders false
+	 * @return boolean true als de file niet leeg is anders false
+	 */
 	public static boolean fileIsEmpty(String username){
 		try{
 			Scanner sc = new Scanner(new FileReader(username + ".txt"));
@@ -93,7 +109,10 @@ public class User {
 		return false;
 
 	}
-
+	/** 
+	 * Retourneert een userInfo klasse op basis van de parameter String username
+	 * @return userInfo 
+	 */
 	public static userInfo readfile(String username)
 	{
 		userInfo user;
@@ -139,7 +158,9 @@ public class User {
 		}
 		return user;
 	}
-
+	/** 
+	 * de gegevens van de user worden weg geschreven naar de textfile String username
+	 */
 	public static void writeData(String username, ArrayList<String> selectedTag, ArrayList<String> unselectedTag, ArrayList<String> lied){
 		try{
 			// Create file

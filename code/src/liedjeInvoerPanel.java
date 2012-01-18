@@ -13,7 +13,10 @@ public class liedjeInvoerPanel extends JPanel implements MouseListener{
 	private JTextField artiest = new JTextField("voer in",15);
 	private JLabel nummerInvoer = new JLabel("nummer");
 	private JLabel artiestInvoer = new JLabel("artiest");
-	
+	/** 
+	 * maakt een nieuwe LiedjeInvoerPanel klasse
+	 * 
+	 */
 	public liedjeInvoerPanel(){
 		setLayout(new GridLayout(4,2));
 		add(nummerInvoer);
@@ -27,6 +30,11 @@ public class liedjeInvoerPanel extends JPanel implements MouseListener{
 		nummer.addMouseListener(this);
 		artiest.addMouseListener(this);
 	}
+	/** 
+	 * Retourneert een Lied op basis van invoer van de nummer en artiest velden
+	 * @return Lied op basis van invoer van de nummer en artiest velden
+	 * 
+	 */
 	public Lied getLiedje(){
 		return new Lied(nummer.getText(),artiest.getText());
 	}

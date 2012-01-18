@@ -3,6 +3,10 @@ import java.util.*;
 
 
 public class testReader {
+	/** 
+	 * main klasse om de tests uit te voeren
+	 * 
+	 */
 	public static void main(String [] args) {
 		//hier wordt de gegevens van de txt file in een arraylist van liedjes gestopt
 		ArrayList<Lied> anandport = readFile("/Users/viresh_2090/TUDelft/groep5/documenten/test playlists/test9.txt");
@@ -70,6 +74,10 @@ public class testReader {
 
 
 	}
+	/** 
+	 *de playlist String file wordt ingelezen
+	 * @return ArrayList van liedjes
+	 */
 	//hier wordt de txt file ingelezen
 	public static ArrayList<Lied> readFile(String file){
 		try {
