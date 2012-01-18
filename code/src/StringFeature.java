@@ -18,7 +18,7 @@ public class StringFeature extends Feature {
 	}
 	/** 
 	 * vergelijkt deze feature met een andere
-	 * @return 
+	 * @return boolean asl deze feature overeenkomt met de andere feature anders false
 	 */
 	//vergelijkt deze feature met een andere
 	public boolean validate(Feature that)

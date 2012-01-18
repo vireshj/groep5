@@ -10,7 +10,10 @@ public class liedPanel extends JTable {
 	private JLabel nummer1 = new JLabel("nummer:");
 	private JLabel artiest1 = new JLabel("artiest:");
 	private JLabel album1 = new JLabel("album:");
-	
+	/** 
+	 * maakt een nieuwe liedPanel klasse
+	 * 
+	 */
 	public liedPanel(){
 		setLayout(new GridLayout(1,8));
 		this.setSize(600,30);
@@ -27,11 +30,18 @@ public class liedPanel extends JTable {
 		add(album1);
 		add(album);
 	}
+	/** 
+	 * de nummer, artiest en album van deze liedPanel worden geset naar de waardes van Lied invoer
+	 */
 	public void setLiedPanel(Lied invoer){
 		this.nummer.setText(invoer.getNaam());
 		this.artiest.setText(invoer.getArtiest());
 		this.album.setText(invoer.getAlbum());
 	}
+	/** 
+	 *Retourneert een Lied op basis van nummer, artiest en album
+	 *@return Lied op basis van nummer, artiest en album
+	 */
 	public Lied getLiedPanel(){
 		return new Lied(nummer.getText(),artiest.getText(), album.getText(),null, "temp");
 	}
