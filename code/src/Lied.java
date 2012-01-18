@@ -87,29 +87,29 @@ public class Lied {
 	}
 	/** 
 	 * Retourneert de tags van het liedje
-	 * @return Collection<String> naam van het leidje
+	 * @return Collection<String>  tags van het liedje
 	 */
 	public Collection<String> getTag(){
 		return this.tag;
 	}
 	/** 
-	 * Retourneert de naam van het liedje
-	 * @return String naam van het leidje
+	 * Retourneert de lastFM id van het liedje
+	 * @return String id van het liedje
 	 */
 	public String getMBID(){
 		return this.mbid;
 	}
 	/** 
-	 * Retourneert de naam van het liedje
-	 * @return String naam van het leidje
+	 * Retourneert een String met daarin de artiest en de naam van het liedje
+	 * @return String met daarin de artiest en de naam van het liedje
 	 */
 	public String toString()
 	{
 		return this.artiest + "," + this.naam;
 	}
 	/** 
-	 * Retourneert de naam van het liedje
-	 * @return String naam van het leidje
+	 * Retourneert true als Object obj overeenkomt met deze klasse anders false
+	 * @return Boolean true als Object obj overeenkomt met deze klasse anders false
 	 */
 	public boolean equals(Object obj)
 	{
