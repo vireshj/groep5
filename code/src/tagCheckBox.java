@@ -5,7 +5,6 @@ public class tagCheckBox{
 	private String tag;
 	/** 
 	 * maakt een nieuwe tagCheckBox klasse op basis van de parameters : JCheckBox tagBox, String tag
-	 * @return ArrayList<String> van tags 
 	 */
 	public tagCheckBox(JCheckBox tagBox, String tag){
 		this.tag = tag;
