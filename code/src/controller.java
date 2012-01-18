@@ -7,7 +7,9 @@
 	
 	public class controller {
 		private static final String apiKey = "9b24762f4ec58fed178083b4d9f255c2";
-	
+		/**
+		 * maakt de gui aan  
+	     */
 		//hier wordt de gui aangemaakt
 		public static void main(String [] args){
 			new gui();

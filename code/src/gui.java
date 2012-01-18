@@ -4,8 +4,6 @@ import java.awt.FlowLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.Collection;
-
 import javax.swing.*;
 
 
@@ -15,7 +13,7 @@ public class gui extends JFrame{
 	private JButton zoek  = new JButton("voeg toe");
 	private JButton home = new JButton("home");
 	private JButton klaar = new JButton("klaar");
-	private JButton reset = new JButton("Reset");
+	private JButton reset = new JButton("reset history");
 	private JButton quickRecommend = new JButton("Quick Recommend");
 	private JLabel success = new JLabel("");
 	private JLabel successie = new JLabel("");
@@ -63,7 +61,7 @@ public class gui extends JFrame{
 		zoek = new JButton("voeg toe");
 		klaar  = new JButton("klaar");
 		quickRecommend = new JButton("Quick Recommend");
-		reset = new JButton("reset");
+		reset = new JButton("reset history");
 		container.removeAll();
 		container.add(quickRecommend);
 		container.add(invoer);
@@ -122,14 +120,23 @@ public class gui extends JFrame{
 		home.setVisible(true);
 		home.addMouseListener(new mouseHandler());
 	}
+	/** 
+	 *Retourneert een lied
+	 *@return Lied
+	 */
 	public Lied getInvoer(){
 		return invoer.getLiedje();
 	}
-
+	/** 
+	 *Retourneert invoer
+	 *@return string
+	 */
 	public String getNaamInvoer(){
 		return inlog.getUserName();
 	}
-
+	/** 
+	 *set de feedbackpanel op basis van de meegegeven parameter : ArrayList<Lied> invoer
+	 */
 	public static void setFeedbackPanel(ArrayList<Lied> invoer){
 
 		recommendation.makeTable(invoer.size());

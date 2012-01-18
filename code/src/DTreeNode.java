@@ -1,6 +1,5 @@
 import java.util.*;
 
-import de.umass.lastfm.Tag;
 
 //klasse DTreeNode, maakt onderdeel uit van een decision Tree. 
 //Controleert of liedjes vergelijkbaar zijn met het gegeven liedje
