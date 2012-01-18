@@ -7,6 +7,10 @@ import javax.swing.table.*;
 
 //zorgt voor het instellen van de juiste breedte in een JTable
 public class ColumnResizer {
+	/** 
+     * zorgt voor het instellen van de juiste breedte in een JTable
+     * 
+     */
 	public static void adjustColumnPreferredWidths(JTable table) {
 		// strategy - get max width for cells in column and
 		// make that the preferred width

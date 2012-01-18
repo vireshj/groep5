@@ -12,6 +12,10 @@
 		public static void main(String [] args){
 			new gui();
 		}
+		/** 
+	     * Retourneert een Lied die overeenkomt met de parameter Lied invoer
+	     * @return de gevonden Lied in de lastFM database
+	     */
 		// vind in de database een matching liedje.
 		public static Lied findSong(Lied invoer)
 		{
@@ -22,7 +26,10 @@
 			catch(Exception e){return null;}
 			return gevonden;
 		}
-	
+		/** 
+	     * recommendeer methode die gebruik maakt van de methode van lastFM
+	     * @deprecated
+	     */
 		//recommendeer methode die gebruik maakt van de methode van lastFM
 		//gebruikt in eerste iteratie
 		public static void findSimilarSongs(Lied invoer){
@@ -32,7 +39,10 @@
 			gui.setFeedbackPanel(songs);
 	
 		}
-	
+		/** 
+	     * recommendeer methode die gebruik maakt van klasse Cluster om de best overeenkomende liedjes te geven  i.v.m. de gegeven lijst
+	     * @return een ArrayList van liedjes om de best overeenkomende liedjes te geven  i.v.m. de gegeven lijst
+	     */
 		//recommendeer methode die gebruik maakt van klasse Cluster om de best overeenkomende liedjes te geven  i.v.m. de gegeven lijst
 		//huidige recommendeer methode
 		public static ArrayList<Lied> findSimilarSongsCluster(Collection<String> tags, ArrayList<Lied> song)
@@ -67,7 +77,10 @@
 			gui.setFeedbackPanel(result);
 			return result;
 		}
-	
+		/** 
+	     * methode om te klassificeren m.b.v. een decision tree wordt niet meer gebruikt Paramters(Collection<String> tags, Lied song)
+	     * @deprecated
+	     */
 		//methode om te klassificeren m.b.v. een decision tree.
 		//wordt niet meer gebruikt
 		public static void findSimilairSongsDecisionTree(Collection<String> tags, Lied song){

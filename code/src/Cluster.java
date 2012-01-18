@@ -4,13 +4,19 @@ import java.util.*;
 public class Cluster {
 	Collection<String> tags;
 	 ArrayList<Lied> songs;
-	
+	 /** 
+	     * maakt een nieuwe CLuster klasse, met de parameters tags en songs
+	     * 
+	     */
 	public Cluster(Collection<String> tags, ArrayList<Lied> songs)
 	{
 		this.tags = tags;
 		this.songs = songs;
 	}
-	
+	 /** 
+     * Retourneert een ArrayList van n liedjes die de meeste overlap hebben met tags
+     * @return een ArrayList van n liedjes die de meeste overlap hebben met tags
+     */
 	//methode die een lijst van liedjes omzet naar een lijst van n liedjes met de meeste overlap van tags
 	public ArrayList<Lied> cluster(ArrayList<Lied> liedjes , int n)
 	{

@@ -31,7 +31,9 @@ public class gui extends JFrame{
 	private boolean fail = false;
 
 	private ArrayList<Lied> playlist = new ArrayList<Lied>();
-
+	/** 
+	 * maakt een nieuwe GUI
+	 */
 	public gui (){
 		setTitle("groep5");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -44,6 +46,9 @@ public class gui extends JFrame{
 		setVisible(true);
 		container.add(success);
 	}
+	/** 
+	 * bouwt het beginscherm op
+	 */
 	public void startScreen(){
 		container.add(inlog);
 		container.add(login);
@@ -51,6 +56,9 @@ public class gui extends JFrame{
 		inlog.setVisible(true);
 		login.setVisible(true);
 	}
+	/** 
+	 * bouwt het liedje invoer scherm op
+	 */
 	public void liedjeInvoerScreen(){
 		zoek = new JButton("voeg toe");
 		klaar  = new JButton("klaar");
@@ -73,6 +81,9 @@ public class gui extends JFrame{
 		invoer.setVisible(true);
 		zoek.setVisible(true);
 	}
+	/** 
+	 *bouwt het tag selecteer scherm op
+	 */
 	public void verificatieScreen(){
 		fail = false;
 		ja = new JButton("klaar");
@@ -86,6 +97,9 @@ public class gui extends JFrame{
 		ja.setVisible(true);
 		tags.setVisible(true);
 	}
+	/** 
+	 * maakt een nieuwe feedbackSysteemPanel klasse die JPanel extends
+	 */
 	public void reccomendatieScreen(){
 		successie = new JLabel("");
 		

@@ -9,14 +9,20 @@ public class DTreeNode {
 	private DTreeNode yesNode;
 	private Lied song;
 	private boolean isLeaf;
-	
+	/** 
+     * maakt een nieuwe DTreeNode klasse, met de parameters String tag en  Lied song 
+     * @deprecated use Cluster
+     */
 	public DTreeNode(String tag, Lied song)
 	{
 		this.tag = tag;
 		this.isLeaf = true;
 		this.song = song;
 	}
-	
+	/** 
+     * maakt een nieuwe DTreeNode klasse, met de parameters String tag ,DTreeNode node en Lied song
+     * @deprecated use Cluster
+     */
 	public DTreeNode(String tag, DTreeNode node, Lied song)
 	{
 		this.tag = tag;
@@ -24,13 +30,21 @@ public class DTreeNode {
 		this.yesNode = node;
 		this.song = song;
 	}
-	
+	/** 
+     * set de yesNode naar node
+     * @deprecated use Cluster
+     */
+	//set de yesNode naar node
 	public void setYes(DTreeNode node)
 	{
 		this.yesNode = node;
 	}
-	
-	
+	/** 
+     *Vergelijkt de lijst van liedjes met het gegeven liedje op de parameter van deze node
+     *stuurt deze lijst door naar de volgende node om te controleren
+     * @return returnt een ArrayList van n vergelijkbare liedjes
+     * @deprecated use Cluster
+     */
 	//Vergelijkt de lijst van liedjes met het gegeven liedje op de parameter van deze node
 	//stuurt deze lijst door naar de volgende node om te controleren
 	//returnt n vergelijkbare liedjes

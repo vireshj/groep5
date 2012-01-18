@@ -5,7 +5,7 @@ import java.util.*;
 public class testReader {
 	public static void main(String [] args) {
 		//hier wordt de gegevens van de txt file in een arraylist van liedjes gestopt
-		ArrayList<Lied> anandport = readFile("/Users/viresh_2090/TUDelft/groep5/documenten/test playlists/test7.txt");
+		ArrayList<Lied> anandport = readFile("/Users/viresh_2090/TUDelft/groep5/documenten/test playlists/test9.txt");
 		// deze arraylist bevat uiteindelijk de gevonden liedjes van de user playlist met de lastFM database
 		ArrayList<Lied> playlist = new ArrayList<Lied>();
 		for(Lied l : anandport){

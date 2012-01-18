@@ -11,7 +11,9 @@ public class inlogPanel extends JPanel implements MouseListener{
 
 	private JTextField inlogNaam = new JTextField("voer in",30);
 	private JLabel inlogInvoer = new JLabel("Naam");
-
+	/** 
+	 * maakt een nieuwe inlogPanel klasse
+	 */
 	public inlogPanel(){
 		setLayout(new GridLayout(4,2));
 		add(inlogInvoer);
@@ -20,7 +22,10 @@ public class inlogPanel extends JPanel implements MouseListener{
 		inlogNaam.setForeground(Color.GRAY);
 		inlogNaam.addMouseListener(this);
 	}
-
+	/** 
+	 * Retourneert de user name
+	 * @return String userName
+	 */
 	public String getUserName(){
 		User user = new User(inlogNaam.getText());
 		return user.getNaam();
